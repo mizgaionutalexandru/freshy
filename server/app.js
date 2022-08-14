@@ -7,6 +7,9 @@ require('dotenv').config({
 
 const itemRouter = require('./routes/itemsRoutes');
 
+// Parses incoming requests - information will be on req.body
+app.use(express.json({ limit: '10kb' }));
+
 // Connecting to DB
 mongoose
   .connect(process.env.DB.replace('<password>', process.env.DB_PASS))
