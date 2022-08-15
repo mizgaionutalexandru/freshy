@@ -4,8 +4,6 @@ class AppError extends Error {
 
     this.statusCode = statusCode;
     this.isOperational = true; // helps to know if it's an error intentionally made or not
-
-    Error.captureStackTrace(this, this.constructor);
   }
 }
 

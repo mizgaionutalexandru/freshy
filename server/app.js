@@ -4,6 +4,8 @@ const mongoose = require('mongoose');
 require('dotenv').config({
   path: './config.env',
 });
+const AppError = require('./utils/appError');
+const errorController = require('./controllers/errorController');
 
 const itemRouter = require('./routes/itemsRoutes');
 
@@ -24,7 +26,13 @@ mongoose
 // API routes
 app.use('/api/v1/items', itemRouter);
 
-// TODO: add error handler
+// Run for all methods - url not found
+app.all('*', (req, res, next) => {
+  next(new AppError(`Can't find ${req.originalUrl}.`, 404));
+});
+
+// Error handler
+app.use(errorController);
 
 // Start the server
 app.listen(process.env.PORT, () => {

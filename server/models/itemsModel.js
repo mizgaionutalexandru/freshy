@@ -21,7 +21,7 @@ const itemSchema = new mongoose.Schema({
     enum: {
       values: [0.25, 0.5, 1],
       message:
-        '{VALUE} default quantity is not supported! Please choose 0.25, 0.5 or 1!',
+        '{VALUE} default quantity is not supported. Please choose 0.25, 0.5 or 1!',
     },
     default: 1,
   },
@@ -30,7 +30,7 @@ const itemSchema = new mongoose.Schema({
     required: [true, 'An item must have an unit!'],
     enum: {
       values: ['kg', 'pc'],
-      message: '{VALUE} unit is not supported! Please choose kg or pc!',
+      message: '{VALUE} unit is not supported. Please choose kg or pc!',
     },
   },
 });
