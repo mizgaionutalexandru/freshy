@@ -49,6 +49,13 @@ const handleValidationError = (err, req, res) => {
   return new AppError(`Invalid data. ${errors.join(' ')}`, 400);
 };
 
+const handleCastError = (err, req, res) => {
+  return new AppError(
+    `Invalid ${err.path}: ${err.value}. Please try again!`,
+    400
+  );
+};
+
 module.exports = (err, req, res, next) => {
   err.statusCode = err.statusCode || 500;
 
@@ -58,6 +65,7 @@ module.exports = (err, req, res, next) => {
     if (err.code === 11000) error = handleDuplicateFieldsError(err, req, res);
     if (err.name === 'ValidationError')
       error = handleValidationError(err, req, res);
+    if (err.name === 'CastError') error = handleCastError(err, req, res);
     sendErrorProd(error || err, req, res);
   }
 };

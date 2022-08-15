@@ -13,9 +13,16 @@ module.exports.getAllItems = catchAsync(async (req, res) => {
   });
 });
 
-module.exports.getItem = (req, res) => {
-  res.send(`Getting the item ${req.params.id}...`);
-};
+module.exports.getItem = catchAsync(async (req, res) => {
+  const item = await Item.findById(req.params.id);
+
+  res.status(200).json({
+    status: 'success',
+    data: {
+      item,
+    },
+  });
+});
 
 module.exports.createItem = catchAsync(async (req, res) => {
   const item = await Item.create(req.body);
