@@ -4,7 +4,7 @@ const fs = require('fs');
 const mongoose = require('mongoose');
 const Item = require('./../models/itemsModel');
 require('dotenv').config({
-  path: './config.env',
+  path: `${__dirname}/../config.env`,
 });
 
 mongoose
