@@ -1,0 +1,492 @@
+[
+  {
+    "image": "almonds.jpg",
+    "name": "Almonds",
+    "price": 9.74,
+    "defaultQuantity": 1,
+    "unit": "kg"
+  },
+  {
+    "image": "apples_green.jpg",
+    "name": "Green Apples",
+    "price": 0.78,
+    "defaultQuantity": 1,
+    "unit": "kg"
+  },
+  {
+    "image": "apples_red.jpg",
+    "name": "Red Apples",
+    "price": 0.79,
+    "defaultQuantity": 1,
+    "unit": "kg"
+  },
+  {
+    "image": "apricots.jpg",
+    "name": "Apricots",
+    "price": 2.23,
+    "defaultQuantity": 1,
+    "unit": "kg"
+  },
+  {
+    "image": "avocado.jpg",
+    "name": "Avocado",
+    "price": 1.22,
+    "defaultQuantity": 1,
+    "unit": "pc"
+  },
+  {
+    "image": "bananas.jpg",
+    "name": "Bananas",
+    "price": 1.19,
+    "defaultQuantity": 1,
+    "unit": "kg"
+  },
+  {
+    "image": "beans_red.jpg",
+    "name": "Red Beans",
+    "price": 1.93,
+    "defaultQuantity": 1,
+    "unit": "kg"
+  },
+  {
+    "image": "beans_white.jpg",
+    "name": "White Beans",
+    "price": 1.59,
+    "defaultQuantity": 1,
+    "unit": "kg"
+  },
+  {
+    "image": "blueberries.jpg",
+    "name": "Blueberries",
+    "price": 6.09,
+    "defaultQuantity": 0.25,
+    "unit": "kg"
+  },
+  {
+    "image": "broccoli.jpg",
+    "name": "Broccoli",
+    "price": 2.43,
+    "defaultQuantity": 1,
+    "unit": "kg"
+  },
+  {
+    "image": "cabbage_red.jpg",
+    "name": "Red Cabbage",
+    "price": 0.71,
+    "defaultQuantity": 1,
+    "unit": "kg"
+  },
+  {
+    "image": "cabbage_white.jpg",
+    "name": "White Cabbage",
+    "price": 0.47,
+    "defaultQuantity": 1,
+    "unit": "kg"
+  },
+  {
+    "image": "carrots.jpg",
+    "name": "Carrots",
+    "price": 2.54,
+    "defaultQuantity": 1,
+    "unit": "kg"
+  },
+  {
+    "image": "cashew.jpg",
+    "name": "Cashew",
+    "price": 14.99,
+    "defaultQuantity": 0.25,
+    "unit": "kg"
+  },
+  {
+    "image": "cauliflower.jpg",
+    "name": "Cauliflower",
+    "price": 1.42,
+    "defaultQuantity": 1,
+    "unit": "kg"
+  },
+  {
+    "image": "celery.jpg",
+    "name": "Celery",
+    "price": 0.99,
+    "defaultQuantity": 1,
+    "unit": "pc"
+  },
+  {
+    "image": "cherries.jpg",
+    "name": "Cherries",
+    "price": 2.84,
+    "defaultQuantity": 0.5,
+    "unit": "kg"
+  },
+  {
+    "image": "coconut.jpg",
+    "name": "Coconut Walnut",
+    "price": 0.77,
+    "defaultQuantity": 1,
+    "unit": "pc"
+  },
+  {
+    "image": "cucumber_cornichon.jpg",
+    "name": "Cornichon Cucumbers",
+    "price": 0.99,
+    "defaultQuantity": 1,
+    "unit": "kg"
+  },
+  {
+    "image": "cucumber_fabio.jpg",
+    "name": "Fabio Cucumbers",
+    "price": 1.79,
+    "defaultQuantity": 1,
+    "unit": "kg"
+  },
+  {
+    "image": "dates.jpg",
+    "name": "Dates",
+    "price": 2.99,
+    "defaultQuantity": 0.25,
+    "unit": "kg"
+  },
+  {
+    "image": "eggplants.jpg",
+    "name": "Eggplants",
+    "price": 1.19,
+    "defaultQuantity": 1,
+    "unit": "kg"
+  },
+  {
+    "image": "figs.jpg",
+    "name": "Figs",
+    "price": 2.69,
+    "defaultQuantity": 0.5,
+    "unit": "kg"
+  },
+  {
+    "image": "garlic.jpg",
+    "name": "Garlic",
+    "price": 1.79,
+    "defaultQuantity": 0.25,
+    "unit": "kg"
+  },
+  {
+    "image": "ginger.jpg",
+    "name": "Ginger",
+    "price": 2.64,
+    "defaultQuantity": 0.25,
+    "unit": "kg"
+  },
+  {
+    "image": "grapefruits.jpg",
+    "name": "Grapefruits",
+    "price": 1.29,
+    "defaultQuantity": 1,
+    "unit": "kg"
+  },
+  {
+    "image": "grapes_black.jpg",
+    "name": "Black Grapes",
+    "price": 3.04,
+    "defaultQuantity": 1,
+    "unit": "kg"
+  },
+  {
+    "image": "grapes_rose.jpg",
+    "name": "Rose Grapes",
+    "price": 3.19,
+    "defaultQuantity": 1,
+    "unit": "kg"
+  },
+  {
+    "image": "grapes_white.jpg",
+    "name": "White Grapes",
+    "price": 2.99,
+    "defaultQuantity": 1,
+    "unit": "kg"
+  },
+  {
+    "image": "hazelnuts.jpg",
+    "name": "Hazelnuts",
+    "price": 14.19,
+    "defaultQuantity": 0.5,
+    "unit": "kg"
+  },
+  {
+    "image": "kiwi.jpg",
+    "name": "Kiwi",
+    "price": 2.23,
+    "defaultQuantity": 1,
+    "unit": "kg"
+  },
+  {
+    "image": "kohlrabi.jpg",
+    "name": "Kohlrabi",
+    "price": 0.39,
+    "defaultQuantity": 1,
+    "unit": "pc"
+  },
+  {
+    "image": "leeks.jpg",
+    "name": "Leeks",
+    "price": 1.42,
+    "defaultQuantity": 1,
+    "unit": "pc"
+  },
+  {
+    "image": "lemons.jpg",
+    "name": "Lemons",
+    "price": 1.83,
+    "defaultQuantity": 1,
+    "unit": "kg"
+  },
+  {
+    "image": "lentils_red.jpg",
+    "name": "Red Lentils",
+    "price": 2.23,
+    "defaultQuantity": 0.5,
+    "unit": "kg"
+  },
+  {
+    "image": "lentils_yellow.jpg",
+    "name": "Yellow Lentils",
+    "price": 2.2,
+    "defaultQuantity": 0.5,
+    "unit": "kg"
+  },
+  {
+    "image": "lettuce.jpg",
+    "name": "Lettuce",
+    "price": 0.47,
+    "defaultQuantity": 1,
+    "unit": "pc"
+  },
+  {
+    "image": "lettuce_romain.jpg",
+    "name": "Romain Lettuce",
+    "price": 0.51,
+    "defaultQuantity": 1,
+    "unit": "pc"
+  },
+  {
+    "image": "limes.jpg",
+    "name": "Limes",
+    "price": 0.3,
+    "defaultQuantity": 0.25,
+    "unit": "kg"
+  },
+  {
+    "image": "mango.jpg",
+    "name": "Mango",
+    "price": 1.42,
+    "defaultQuantity": 1,
+    "unit": "pc"
+  },
+  {
+    "image": "mushrooms.jpg",
+    "name": "Champignon Mushrooms",
+    "price": 2.64,
+    "defaultQuantity": 0.5,
+    "unit": "kg"
+  },
+  {
+    "image": "nectarines.jpg",
+    "name": "Nectarines",
+    "price": 1.83,
+    "defaultQuantity": 1,
+    "unit": "kg"
+  },
+  {
+    "image": "onion_green.jpg",
+    "name": "Green Onion (bond)",
+    "price": 0.2,
+    "defaultQuantity": 1,
+    "unit": "pc"
+  },
+  {
+    "image": "onion_red.jpg",
+    "name": "Red Onion",
+    "price": 0.89,
+    "defaultQuantity": 1,
+    "unit": "kg"
+  },
+  {
+    "image": "onion_yellow.jpg",
+    "name": "Yellow Onion",
+    "price": 0.81,
+    "defaultQuantity": 1,
+    "unit": "kg"
+  },
+  {
+    "image": "oranges.jpg",
+    "name": "Oranges",
+    "price": 1.22,
+    "defaultQuantity": 1,
+    "unit": "kg"
+  },
+  {
+    "image": "papaya.jpg",
+    "name": "Papaya",
+    "price": "2.54",
+    "defaultQuantity": 1,
+    "unit": "pc"
+  },
+  {
+    "image": "parsnip.jpg",
+    "name": "Parsnip",
+    "price": 0.69,
+    "defaultQuantity": 0.5,
+    "unit": "kg"
+  },
+  {
+    "image": "peaches.jpg",
+    "name": "Peaches",
+    "price": 1.62,
+    "defaultQuantity": 1,
+    "unit": "kg"
+  },
+  {
+    "image": "peanuts.jpg",
+    "name": "Peanuts",
+    "price": 4.46,
+    "defaultQuantity": 1,
+    "unit": "kg"
+  },
+  {
+    "image": "pears.jpg",
+    "name": "Pears",
+    "price": 1.99,
+    "defaultQuantity": 1,
+    "unit": "kg"
+  },
+  {
+    "image": "pepper_green.jpg",
+    "name": "Green Peppers",
+    "price": 2.79,
+    "defaultQuantity": 1,
+    "unit": "kg"
+  },
+  {
+    "image": "pepper_red.jpg",
+    "name": "Red Peppers",
+    "price": 2.84,
+    "defaultQuantity": 1,
+    "unit": "kg"
+  },
+  {
+    "image": "pepper_yellow.jpg",
+    "name": "Yellow Peppers",
+    "price": 2.82,
+    "defaultQuantity": 1,
+    "unit": "kg"
+  },
+  {
+    "image": "pineapple.jpg",
+    "name": "Pineapple",
+    "price": 2.99,
+    "defaultQuantity": 1,
+    "unit": "pc"
+  },
+  {
+    "image": "plums.jpg",
+    "name": "Plums",
+    "price": 0.81,
+    "defaultQuantity": 1,
+    "unit": "kg"
+  },
+  {
+    "image": "pomegranate.jpg",
+    "name": "Pomegranate",
+    "price": 0.71,
+    "defaultQuantity": 1,
+    "unit": "pc"
+  },
+  {
+    "image": "potatoes_new.jpg",
+    "name": "New Potatoes",
+    "price": 0.88,
+    "defaultQuantity": 1,
+    "unit": "kg"
+  },
+  {
+    "image": "potatoes_red.jpg",
+    "name": "Red Potatoes",
+    "price": 0.96,
+    "defaultQuantity": 1,
+    "unit": "kg"
+  },
+  {
+    "image": "potatoes_sweet.jpg",
+    "name": "Sweet Potatoes",
+    "price": 2.03,
+    "defaultQuantity": 1,
+    "unit": "kg"
+  },
+  {
+    "image": "potatoes_white.jpg",
+    "name": "White Potatoes",
+    "price": 0.79,
+    "defaultQuantity": 1,
+    "unit": "kg"
+  },
+  {
+    "image": "radishes.jpg",
+    "name": "Radishes",
+    "price": 2.03,
+    "defaultQuantity": 0.25,
+    "unit": "kg"
+  },
+  {
+    "image": "spinach.jpg",
+    "name": "Spinach",
+    "price": 2.19,
+    "defaultQuantity": 1,
+    "unit": "kg"
+  },
+  {
+    "image": "strawberries.jpg",
+    "name": "Strawberries",
+    "price": 4.82,
+    "defaultQuantity": 1,
+    "unit": "kg"
+  },
+  {
+    "image": "tangerines.jpg",
+    "name": "Tangerines",
+    "price": 1.62,
+    "defaultQuantity": 1,
+    "unit": "kg"
+  },
+  {
+    "image": "tomatoes.jpg",
+    "name": "Tomatoes",
+    "price": 1.42,
+    "defaultQuantity": 1,
+    "unit": "kg"
+  },
+  {
+    "image": "tomatoes_cherry.jpg",
+    "name": "Cherry Tomatoes",
+    "price": 1.83,
+    "defaultQuantity": 0.25,
+    "unit": "kg"
+  },
+  {
+    "image": "walnuts.jpg",
+    "name": "Walnuts",
+    "price": 1.62,
+    "defaultQuantity": 0.5,
+    "unit": "kg"
+  },
+  {
+    "image": "watermelon.jpg",
+    "name": "Watermelon",
+    "price": 0.41,
+    "defaultQuantity": 1,
+    "unit": "kg"
+  },
+  {
+    "image": "zucchini.jpg",
+    "name": "Zucchini",
+    "price": 1.08,
+    "defaultQuantity": 1,
+    "unit": "kg"
+  }
+]
