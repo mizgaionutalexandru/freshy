@@ -18,6 +18,11 @@ const itemSchema = new mongoose.Schema({
   },
   defaultQuantity: {
     type: 'Number',
+    enum: {
+      values: [0.25, 0.5, 1],
+      message:
+        '{VALUE} default quantity is not supported! Please choose 0.25, 0.5 or 1!',
+    },
     default: 1,
   },
   unit: {
