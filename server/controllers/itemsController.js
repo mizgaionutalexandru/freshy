@@ -1,7 +1,15 @@
 const Item = require('./../models/itemsModel');
 
-module.exports.getAllItems = (req, res) => {
-  res.send('Getting all items...');
+module.exports.getAllItems = async (req, res) => {
+  const items = await Item.find({});
+
+  res.status(200).json({
+    status: 'success',
+    items: items.length,
+    data: {
+      items,
+    },
+  });
 };
 
 module.exports.getItem = (req, res) => {
@@ -10,12 +18,12 @@ module.exports.getItem = (req, res) => {
 
 module.exports.createItem = async (req, res) => {
   try {
-    const doc = await Item.create(req.body);
+    const item = await Item.create(req.body);
 
     res.status(200).json({
       status: 'success',
       data: {
-        data: doc,
+        data: item,
       },
     });
   } catch (err) {
