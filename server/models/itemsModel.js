@@ -1,3 +1,5 @@
+const AppError = require('./../utils/appError');
+
 const mongoose = require('mongoose');
 
 const itemSchema = new mongoose.Schema({
@@ -33,6 +35,12 @@ const itemSchema = new mongoose.Schema({
       message: '{VALUE} unit is not supported. Please choose kg or pc!',
     },
   },
+});
+
+itemSchema.pre('save', function (next) {
+  if (this.unit === 'pc' && this.defaultQuantity != 1)
+    next(new AppError("Unit 'pc' goes only with defaultQuantity '1'!", 400));
+  next();
 });
 
 const Item = mongoose.model('Item', itemSchema);
