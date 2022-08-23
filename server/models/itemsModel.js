@@ -43,5 +43,10 @@ itemSchema.pre('save', function (next) {
   next();
 });
 
+itemSchema.pre(/^find/, function (next) {
+  this.select('-__v');
+  next();
+});
+
 const Item = mongoose.model('Item', itemSchema);
 module.exports = Item;
