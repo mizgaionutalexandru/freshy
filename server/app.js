@@ -8,6 +8,7 @@ const AppError = require('./utils/appError');
 const errorController = require('./controllers/errorController');
 
 const itemRouter = require('./routes/itemsRoutes');
+const orderRouter = require('./routes/ordersRoutes');
 
 // Parses incoming requests - information will be on req.body
 app.use(express.json({ limit: '10kb' }));
@@ -25,6 +26,7 @@ mongoose
 
 // API routes
 app.use('/api/v1/items', itemRouter);
+app.use('/api/v1/orders', orderRouter);
 
 // Run for all methods - url not found
 app.all('*', (req, res, next) => {
