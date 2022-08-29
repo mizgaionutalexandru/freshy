@@ -3,6 +3,7 @@
 const fs = require('fs');
 const mongoose = require('mongoose');
 const Item = require('./../models/itemsModel');
+const Order = require('./../models/ordersModel');
 require('dotenv').config({
   path: `${__dirname}/../config.env`,
 });
@@ -35,17 +36,16 @@ const importData = async () => {
 };
 
 const deleteData = async () => {
-  Item.deleteMany({})
-    .then(() => {
-      console.log('Data deleted! ✅');
-    })
-    .catch((err) => {
-      console.log('Erorr deleting data! ❌');
-      console.log(err);
-    })
-    .finally(() => {
-      process.exit();
-    });
+  try {
+    await Item.deleteMany({});
+    await Order.deleteMany({});
+    console.log('Data deleted ✅');
+  } catch (err) {
+    console.log('Erorr deleting data! ❌');
+    console.log(err);
+  } finally {
+    process.exit();
+  }
 };
 
 if (process.argv[2] === '--import') importData();
