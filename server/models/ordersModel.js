@@ -52,6 +52,30 @@ orderSchema.pre('save', function (next) {
   next();
 });
 
+orderSchema.pre('save', function (next) {
+  // If there are multiples items in the shoppingCart with the same id, reduce them to one
+  const items = {};
+  const mongooseIds = {};
+
+  for (const orderItem of this.shoppingCart) {
+    const id = orderItem.item.toString();
+    items[id] = items[id] ? items[id] + orderItem.quantity : orderItem.quantity;
+    mongooseIds[id] = mongooseIds[id] || orderItem._id;
+  }
+
+  const shoppingCart = [];
+  for (const item in items) {
+    shoppingCart.push({
+      item,
+      quantity: items[item],
+      _id: mongooseIds[item],
+    });
+  }
+
+  this.shoppingCart = shoppingCart;
+  next();
+});
+
 orderSchema.pre(/^findOne/, function (next) {
   this.populate('shoppingCart.item');
   this.select('-__v -shoppingCart._id');
