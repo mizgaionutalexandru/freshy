@@ -1,4 +1,5 @@
 const mongoose = require('mongoose');
+const Item = require('./itemsModel');
 const AppError = require('./../utils/appError');
 
 const orderSchema = new mongoose.Schema(
@@ -22,9 +23,16 @@ const orderSchema = new mongoose.Schema(
     },
     shoppingCart: [
       {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: 'Item',
-        required: [true, 'An order must items in the shopping cart!'],
+        item: {
+          type: mongoose.Schema.Types.ObjectId,
+          ref: 'Item',
+          required: [true, 'An order must items in the shopping cart!'],
+        },
+        quantity: {
+          type: 'Number',
+          required: [true, "An order must contain the item's quantity!"],
+          min: [0.25, "Item's quantity too low. Minimum is 0.25!"],
+        },
       },
     ],
   },
@@ -45,7 +53,8 @@ orderSchema.pre('save', function (next) {
 });
 
 orderSchema.pre(/^findOne/, function (next) {
-  this.populate('shoppingCart');
+  this.populate('shoppingCart.item');
+  this.select('-__v -shoppingCart._id');
   next();
 });
 
