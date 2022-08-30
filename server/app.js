@@ -1,4 +1,6 @@
 const express = require('express');
+const rateLimit = require('express-rate-limit');
+
 const app = express();
 const mongoose = require('mongoose');
 require('dotenv').config({
@@ -12,6 +14,17 @@ const orderRouter = require('./routes/ordersRoutes');
 
 // Parses incoming requests - information will be on req.body
 app.use(express.json({ limit: '10kb' }));
+
+// Rate limiter
+const limiter = rateLimit({
+  windowMs: 30 * 60 * 1000, // 30 minutes
+  max: 100, // Limit each IP to 100 requests per `window` ,
+  message: 'Too many request from this IP, please try again in 30 mins!', // Error message
+  standardHeaders: true, // Return rate limit info in the `RateLimit-*` headers
+  legacyHeaders: false, // Disable the `X-RateLimit-*` headers
+});
+
+app.use('/api', limiter);
 
 // Connecting to DB
 mongoose
