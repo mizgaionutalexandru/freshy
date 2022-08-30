@@ -10,7 +10,6 @@ const sendErrorDev = (err, req, res) => {
       stack: err.stack,
     });
   }
-  // TODO: Rendered website
 };
 
 const sendErrorProd = (err, req, res) => {
@@ -29,7 +28,6 @@ const sendErrorProd = (err, req, res) => {
       message: 'Something went wrong!',
     });
   }
-  // TODO: Rendered website
 };
 
 const handleDuplicateFieldsError = (err, req, res) => {

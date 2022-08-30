@@ -55,10 +55,6 @@ module.exports.getOrder = catchAsync(async (req, res) => {
 });
 
 module.exports.createOrder = catchAsync(async (req, res) => {
-  // res.status(501).json({
-  //   status: 'error',
-  //   message: 'This functionality is not yet implemented!',
-  // });
   const order = await Order.create(req.body);
 
   res.status(200).json({

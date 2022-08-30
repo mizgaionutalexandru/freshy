@@ -59,14 +59,6 @@ module.exports.createItem = catchAsync(async (req, res) => {
     status: 'error',
     message: 'This functionality is not yet implemented!',
   });
-  // const item = await Item.create(req.body);
-
-  // res.status(200).json({
-  //   status: 'success',
-  //   data: {
-  //     data: item,
-  //   },
-  // });
 });
 
 module.exports.updateItem = (req, res) => {
