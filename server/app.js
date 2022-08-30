@@ -3,6 +3,7 @@ const rateLimit = require('express-rate-limit');
 const helmet = require('helmet');
 const mongoSanitize = require('express-mongo-sanitize');
 const xssClean = require('xss-clean');
+const hpp = require('hpp');
 
 const app = express();
 const mongoose = require('mongoose');
@@ -23,6 +24,14 @@ app.use(mongoSanitize());
 
 // Data sanitization against XSS attacks
 app.use(xssClean());
+
+// Prevent parameter pollution
+app.use(
+  hpp({
+    // Allowed filter duplicates
+    whitelist: ['price', 'defaultQuantity'],
+  })
+);
 
 // Security HTTP headers
 app.use(helmet());

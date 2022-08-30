@@ -16,6 +16,7 @@
     "express-mongo-sanitize": "^2.2.0",
     "express-rate-limit": "^6.5.2",
     "helmet": "^6.0.0",
+    "hpp": "^0.2.3",
     "mongoose": "^6.5.2",
     "xss-clean": "^0.1.1"
   },
