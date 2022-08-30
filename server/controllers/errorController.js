@@ -23,6 +23,7 @@ const sendErrorProd = (err, req, res) => {
       });
 
     // Programming or other unknown errors
+    console.log(`🔥🔥🔥 Error:`, err);
     return res.status(err.statusCode).json({
       status: 'error',
       message: 'Something went wrong!',
@@ -54,6 +55,10 @@ const handleCastError = (err, req, res) => {
   );
 };
 
+const handleParseFailedError = (err, req, res) => {
+  return new AppError(err.message, 400);
+};
+
 module.exports = (err, req, res, next) => {
   err.statusCode = err.statusCode || 500;
 
@@ -64,6 +69,9 @@ module.exports = (err, req, res, next) => {
     if (err.name === 'ValidationError')
       error = handleValidationError(err, req, res);
     if (err.name === 'CastError') error = handleCastError(err, req, res);
+    if (err.type === 'entity.parse.failed')
+      error = handleParseFailedError(err, req, res);
+
     sendErrorProd(error || err, req, res);
   }
 };
