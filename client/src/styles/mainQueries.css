@@ -27,6 +27,14 @@
     padding-inline: 3.2rem;
   }
 
+  .logo__name {
+    font-size: 2.4rem;
+  }
+
+  .leaf {
+    height: 3.2rem;
+  }
+
   .container {
     max-width: 1200px;
     margin: 0 auto;
@@ -35,6 +43,11 @@
   .hero__title {
     font-size: 5.2rem;
     width: 64rem;
+  }
+
+  .form--search__input,
+  .form--search__btn {
+    font-size: 1.6rem;
   }
 
   .items {
@@ -134,5 +147,77 @@
   .pagination__text {
     z-index: 3;
     position: relative;
+  }
+}
+
+@media (min-width: 1150px) {
+  .container--main {
+    padding: 0 3.2rem 3.2rem 3.2rem;
+    display: flex;
+    position: relative;
+  }
+
+  .main {
+    padding-block: 3.2rem 0;
+    gap: 3.2rem;
+  }
+
+  .items {
+    padding-right: 3.2rem;
+    padding-top: 0;
+  }
+
+  .pagination {
+    padding-top: 0;
+    padding-bottom: 1.2rem;
+  }
+
+  .show-cart {
+    display: none;
+  }
+
+  .shopping-cart--hidden {
+    transform: unset;
+  }
+
+  .shopping-cart {
+    --width: 100%;
+    padding-top: 0;
+    height: 100%;
+    position: static;
+    border-inline: 1.5px solid rgba(0, 0, 0, 0.12);
+    overflow-y: visible;
+  }
+
+  .shopping-cart__header {
+    justify-content: center;
+    align-items: center;
+    padding-block: 3.2rem;
+    height: 4.8rem;
+    box-sizing: content-box;
+    position: static;
+  }
+
+  .shopping-cart__close {
+    display: none;
+  }
+
+  .shopping-cart__items {
+    height: 60.35rem;
+    padding-bottom: 0;
+    overflow-y: scroll;
+  }
+
+  .shopping-cart__cta {
+    bottom: 1.2rem;
+    position: static;
+    transform: translateX(0);
+    margin: 2.4rem auto 0 auto;
+  }
+}
+
+@media (min-width: 1240px) {
+  .container--main {
+    padding-inline: 0;
   }
 }
