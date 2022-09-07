@@ -54,6 +54,11 @@ html {
   color: var(--black);
 }
 
+.resize-animation-stopper * {
+  animation: none !important;
+  transition: none !important;
+}
+
 body {
   position: relative;
 }
@@ -153,11 +158,6 @@ header {
 .form--search__input::-webkit-input-placeholder {
   color: var(--black);
   opacity: 0.6;
-}
-
-.form--search__input::-webkit-search-cancel-button {
-  background-color: transparent;
-  color: red;
 }
 
 .form--search__btn {
