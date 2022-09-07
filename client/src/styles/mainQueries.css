@@ -1,0 +1,138 @@
+@import './main.css';
+
+@media (min-width: 480px) {
+  .hero__title {
+    font-size: 3.6rem;
+    width: 24rem;
+  }
+
+  .items {
+    grid-template-columns: 1fr 1fr;
+    column-gap: 3.2rem;
+  }
+
+  .shopping-cart__items,
+  .shopping-cart__header {
+    max-width: 40rem;
+    margin: 0 auto;
+  }
+}
+
+@media (min-width: 920px) {
+  html {
+    font-size: 50%;
+  }
+
+  header {
+    padding-inline: 3.2rem;
+  }
+
+  .container {
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+  .hero__title {
+    font-size: 5.2rem;
+    width: 64rem;
+  }
+
+  .items {
+    grid-template-columns: repeat(5, 1fr);
+  }
+
+  .item__quantity {
+    padding-top: 0;
+  }
+
+  .item__input {
+    border: 1.8px solid var(--black);
+    font-size: 1.4rem;
+  }
+
+  .item__price {
+    padding-bottom: 0.8rem;
+  }
+
+  .pagination {
+    align-items: center;
+    gap: 1.2rem;
+  }
+
+  .pagination__direction {
+    display: none;
+  }
+
+  .pagination__arrow,
+  .pagination__dots,
+  .pagination__page {
+    display: block;
+    font-size: 1.8rem;
+  }
+
+  .pagination__arrow,
+  .pagination__page {
+    cursor: pointer;
+    position: relative;
+  }
+
+  .pagination__arrow:is(:first-child) {
+    width: 2.4rem;
+    height: 2.4rem;
+    transform: rotate(180deg);
+    transition: transform 150ms ease-in-out;
+  }
+
+  .pagination__arrow:is(:first-child):hover {
+    transform: rotate(180deg) scale(1.5);
+  }
+
+  .pagination__arrow:not(:first-child) {
+    width: 2.4rem;
+    height: 2.4rem;
+    transition: transform 150ms ease-in-out;
+  }
+
+  .pagination__arrow:not(:first-child):hover {
+    transform: scale(1.5);
+  }
+
+  .pagination__page {
+    width: 4.2rem;
+    height: 4.2rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .pagination__page--active,
+  .pagination__page:hover {
+    color: var(--white);
+  }
+
+  .pagination__page--active::before,
+  .pagination__page:hover::before {
+    --height: 100%;
+    content: '';
+    width: 100%;
+    height: var(--height);
+    border-radius: 50%;
+    position: absolute;
+    top: calc((100% - var(--height)) / 2);
+    left: 0;
+    z-index: 2;
+  }
+
+  .pagination__page--active::before {
+    background-color: var(--green-three);
+  }
+
+  .pagination__page:hover::before {
+    background-color: var(--green-four);
+  }
+
+  .pagination__text {
+    z-index: 3;
+    position: relative;
+  }
+}

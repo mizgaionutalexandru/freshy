@@ -1,7 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;800&display=swap');
 
-@import './mainQueries.css';
-
 /*  Font sizes
     1   rem   10px
     1.2 rem   14px
@@ -91,7 +89,7 @@ header {
 /* ////////// HERO //////////// */
 /* //////////////////////////// */
 
-.hero {
+.container--hero {
   background-color: rgba(0, 0, 0, 0.2);
   background-image: url('./../assets/cover.jpg');
   width: 100%;
@@ -110,6 +108,7 @@ header {
 
 .hero__title {
   font-size: 3rem;
+  width: 20rem;
   padding-right: 1.6rem;
 }
 
@@ -170,6 +169,15 @@ header {
   font-family: 'Poppins', sans-serif;
   font-weight: 500;
   border-radius: 0 4px 4px 0;
+  cursor: pointer;
+  transition: all 100ms ease-in-out;
+}
+
+.form--search__btn:hover {
+  background-color: var(--green-four);
+  transform: scale(1.15);
+  border-radius: 4px;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.2);
 }
 
 .items {
@@ -188,6 +196,12 @@ header {
   width: 17.6rem;
   border-radius: 6px;
   box-shadow: var(--main-shadow);
+  transition: all 100ms ease-in-out;
+}
+
+.item:hover {
+  transform: translateY(-3px);
+  box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.2);
 }
 
 .item__img {
@@ -230,6 +244,13 @@ header {
 .item__decrease,
 .item__increase {
   width: 2.8rem;
+  cursor: pointer;
+  transition: all 100ms ease-in-out;
+}
+
+.item__decrease:hover,
+.item__increase:hover {
+  transform: scale(1.1);
 }
 
 .item__input {
@@ -256,6 +277,12 @@ header {
   font-weight: 600;
   color: var(--white);
   border-radius: 4px;
+  cursor: pointer;
+  transition: all 100ms ease-in-out;
+}
+
+.item__cta:hover {
+  background-color: var(--green-four);
 }
 
 .pagination {
@@ -279,6 +306,14 @@ header {
   border-radius: 4px;
   border: 1.5px solid var(--green-two);
   box-shadow: var(--main-shadow);
+  cursor: pointer;
+  transition: all 100ms ease-in-out;
+}
+
+.pagination__direction:hover {
+  color: var(--white);
+  background-color: var(--green-three);
+  border: 1.5px solid var(--green-four);
 }
 
 /* //////////////////////////// */
@@ -286,15 +321,19 @@ header {
 /* //////////////////////////// */
 
 .shopping-cart {
+  --width: 100vw;
   position: fixed;
   background-color: var(--white);
   padding-top: 4.2rem;
   z-index: 3;
   top: 0;
-  width: 100vw;
+  right: 0;
+  width: var(--width);
   height: 100vh;
   overflow-y: scroll;
   --border-width: 1.5px;
+
+  transition: transform 150ms ease-in-out;
 }
 
 .shopping-cart--hidden {
@@ -320,6 +359,13 @@ header {
 
 .shopping-cart__close {
   width: 2rem;
+  cursor: pointer;
+}
+
+.shopping-cart__close:hover .shopping-cart__close__x,
+.shopping-cart__remove:hover .shopping-cart__remove__x {
+  fill: var(--red);
+  fill-opacity: 1;
 }
 
 .shopping-cart__items {
@@ -368,6 +414,11 @@ header {
 
 .shopping-cart__remove {
   width: 1.8rem;
+  cursor: pointer;
+}
+
+.shopping-cart__remove__x {
+  transition: all 100ms ease-in-out;
 }
 
 .shopping-cart__info__body {
@@ -380,7 +431,6 @@ header {
 
 .shopping-cart__cta {
   width: 30rem;
-  margin: 0 auto;
   padding-block: 0.8rem;
   font-size: 2rem;
   font-weight: 600;
@@ -392,6 +442,13 @@ header {
   bottom: 2.4rem;
   left: 50%;
   transform: translateX(-50%);
+  cursor: pointer;
+  transition: background-color 100ms ease-in-out;
+  box-shadow: var(--main-shadow);
+}
+
+.shopping-cart__cta:hover {
+  background-color: var(--green-four);
 }
 
 .show-cart {
@@ -405,6 +462,13 @@ header {
   top: 82%;
   right: 0;
   box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.2);
+  cursor: pointer;
+  transition: all 100ms ease-in-out;
+}
+
+.show-cart:hover {
+  transform: scale(1.1);
+  box-sizing: 0 6px 12px rgba(0, 0, 0, 0.18);
 }
 
 .show-cart::before {
