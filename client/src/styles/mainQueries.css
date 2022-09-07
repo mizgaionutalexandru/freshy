@@ -148,6 +148,18 @@
     z-index: 3;
     position: relative;
   }
+
+  .shopping-cart {
+    --width: min(100vw, 42rem);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  .shopping-cart__items,
+  .shopping-cart__header {
+    min-width: 36rem;
+  }
 }
 
 @media (min-width: 1150px) {
