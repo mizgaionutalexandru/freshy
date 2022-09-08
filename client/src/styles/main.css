@@ -511,6 +511,7 @@ header {
   width: 5.2rem;
   height: 5.2rem;
   object-fit: cover;
+  object-position: left top;
 }
 
 .shopping-cart__info {
