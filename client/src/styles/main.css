@@ -354,6 +354,63 @@ header {
   outline: none;
 }
 
+.loading {
+  --length: 1.6rem;
+  position: relative;
+  margin-top: 12.8rem;
+}
+
+.loading__dot {
+  height: var(--length);
+  width: var(--length);
+  background-color: var(--green-three);
+  border-radius: 50%;
+  animation-name: loading-dot;
+  animation-duration: 1500ms;
+  animation-iteration-count: infinite;
+  animation-timing-function: ease-in-out;
+  animation-delay: 250ms;
+}
+
+.loading::before,
+.loading::after {
+  content: '';
+  position: absolute;
+  height: var(--length);
+  width: var(--length);
+  border-radius: 50%;
+  background-color: var(--green-three);
+  top: 0;
+  animation-name: loading-dot;
+  animation-duration: 1500ms;
+  animation-iteration-count: infinite;
+  animation-timing-function: ease-in-out;
+}
+
+.loading::before {
+  left: calc(-1 * var(--length) - 0.4rem);
+  animation-delay: 0s;
+}
+
+.loading::after {
+  right: calc(-1 * var(--length) - 0.4rem);
+  animation-delay: 500ms;
+}
+
+@keyframes loading-dot {
+  0%,
+  10% {
+    transform: scale(0.4);
+  }
+  50% {
+    transform: scale(1.1);
+  }
+  90%,
+  100% {
+    transform: scale(0.4);
+  }
+}
+
 /* //////////////////////////// */
 /* ////// SHOPPING CART /////// */
 /* //////////////////////////// */

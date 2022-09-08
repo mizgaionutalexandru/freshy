@@ -28,13 +28,17 @@
           <input
             class="form--search__input"
             type="search"
+            `
             id="query"
             name="q"
             placeholder="All items..."
             aria-label="Search through our items"
           /><button class="form--search__btn" type="submit">Search</button>
         </form>
-        <div class="items" role="list" aria-label="Items you can buy">
+        <div class="loading">
+          <div class="loading__dot"></div>
+        </div>
+        <!-- <div class="items" role="list" aria-label="Items you can buy">
           <article class="item">
             <img class="item__img" src="./assets/bananas.jpg" alt="" />
             <div class="item__title">
@@ -122,7 +126,7 @@
             src="./assets/arrow.svg"
             alt="Move to the previous page icon"
           />
-        </footer>
+        </footer> -->
       </main>
       <aside id="cart" class="shopping-cart shopping-cart--hidden">
         <div class="shopping-cart__header">
