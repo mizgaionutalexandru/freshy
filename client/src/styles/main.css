@@ -481,3 +481,28 @@ header {
   top: -0.8rem;
   left: -0.8rem;
 }
+
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background-color: var(--white);
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: var(--green-three);
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background-color: var(--green-four);
+}
+
+@supports (scrollbar-color: red blue) {
+  * {
+    scrollbar-color: var(--green-three) var(--white);
+    scrollbar-width: auto;
+  }
+}
