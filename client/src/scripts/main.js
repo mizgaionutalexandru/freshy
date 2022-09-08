@@ -12,6 +12,7 @@ cartCloseBtn.addEventListener('click', toggleCartVisibility);
 function toggleCartVisibility() {
   cart.classList.toggle('shopping-cart--hidden');
   // Also toggle show-cart btn visibility
+  // Toggle tabindexes, always show them for >= 1150px
 }
 
 // disables animations during window resize

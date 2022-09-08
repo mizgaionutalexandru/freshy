@@ -51,6 +51,7 @@ html {
   --black: #000e0c;
   --red: #ea4c41;
   --main-shadow: 0px 3px 6px rgba(0, 0, 0, 0.25);
+  --outline: 3px solid var(--green-four);
   color: var(--black);
 }
 
@@ -173,11 +174,17 @@ header {
   transition: all 100ms ease-in-out;
 }
 
-.form--search__btn:hover {
+.form--search__btn:hover,
+.form--search__btn:focus {
   background-color: var(--green-four);
-  transform: scale(1.15);
+  transform: scale(1.12);
   border-radius: 4px;
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.2);
+}
+
+.form--search__btn:focus {
+  outline-offset: 2px;
+  outline: var(--outline);
 }
 
 .items {
@@ -199,7 +206,8 @@ header {
   transition: all 100ms ease-in-out;
 }
 
-.item:hover {
+.item:hover,
+.item:focus-within {
   transform: translateY(-3px);
   box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.2);
 }
@@ -281,8 +289,14 @@ header {
   transition: all 100ms ease-in-out;
 }
 
-.item__cta:hover {
+.item__cta:hover,
+.item__cta:focus {
   background-color: var(--green-four);
+}
+
+.item__cta:focus {
+  outline-offset: 2px;
+  outline: var(--outline);
 }
 
 .pagination {
@@ -310,10 +324,16 @@ header {
   transition: all 100ms ease-in-out;
 }
 
-.pagination__direction:hover {
+.pagination__direction:hover,
+.pagination__direction:focus {
   color: var(--white);
   background-color: var(--green-three);
   border: 1.5px solid var(--green-four);
+}
+
+.pagination__direction:focus {
+  outline: var(--outline);
+  outline-offset: 2px;
 }
 
 /* //////////////////////////// */
@@ -363,7 +383,9 @@ header {
 }
 
 .shopping-cart__close:hover .shopping-cart__close__x,
-.shopping-cart__remove:hover .shopping-cart__remove__x {
+.shopping-cart__remove:hover .shopping-cart__remove__x,
+.shopping-cart__close:focus .shopping-cart__close__x,
+.shopping-cart__remove:focus .shopping-cart__remove__x {
   fill: var(--red);
   fill-opacity: 1;
 }
@@ -447,8 +469,15 @@ header {
   box-shadow: var(--main-shadow);
 }
 
-.shopping-cart__cta:hover {
+.shopping-cart__cta:hover,
+.shopping-cart__cta:focus {
   background-color: var(--green-four);
+}
+
+.shopping-cart__cta:focus,
+.shopping-cart__cta:active {
+  outline-offset: 2px;
+  outline: var(--outline);
 }
 
 .show-cart {
@@ -466,9 +495,15 @@ header {
   transition: all 100ms ease-in-out;
 }
 
-.show-cart:hover {
+.show-cart:hover,
+.show-cart:focus {
   transform: scale(1.1);
   box-sizing: 0 6px 12px rgba(0, 0, 0, 0.18);
+}
+
+.show-cart:focus {
+  outline-offset: 2px;
+  outline: var(--outline);
 }
 
 .show-cart::before {

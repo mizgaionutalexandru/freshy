@@ -119,12 +119,14 @@
   }
 
   .pagination__page--active,
-  .pagination__page:hover {
+  .pagination__page:hover,
+  .pagination__page:focus {
     color: var(--white);
   }
 
   .pagination__page--active::before,
-  .pagination__page:hover::before {
+  .pagination__page:hover::before,
+  .pagination__page:focus::before {
     --height: 100%;
     content: '';
     width: 100%;
@@ -140,7 +142,8 @@
     background-color: var(--green-three);
   }
 
-  .pagination__page:hover::before {
+  .pagination__page:hover::before,
+  .pagination__page:focus::before {
     background-color: var(--green-four);
   }
 
