@@ -347,6 +347,9 @@ header {
   padding: 2.4rem 1.6rem;
   background-color: var(--white);
   border-bottom: var(--border-width) solid rgba(0, 0, 0, 0.12);
+  position: sticky;
+  top: 0;
+  z-index: 2;
 }
 
 .shopping-cart__title {
@@ -367,8 +370,7 @@ header {
 
 .shopping-cart__items {
   padding-inline: 1.2rem;
-  height: 72vh;
-  overflow-y: scroll;
+  padding-bottom: 8rem;
 }
 
 .shopping-cart__item {
@@ -436,7 +438,10 @@ header {
   border-radius: 6px;
   color: var(--white);
   background-color: var(--green-three);
-  margin: 2.4rem auto 2.4rem auto;
+  position: fixed;
+  bottom: 2.4rem;
+  left: 50%;
+  transform: translateX(-50%);
   cursor: pointer;
   transition: background-color 100ms ease-in-out;
   box-shadow: var(--main-shadow);

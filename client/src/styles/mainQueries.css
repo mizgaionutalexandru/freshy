@@ -154,11 +154,28 @@
     display: flex;
     flex-direction: column;
     justify-content: center;
+    box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.2);
   }
 
   .shopping-cart__items,
   .shopping-cart__header {
     min-width: 36rem;
+  }
+
+  .shopping-cart__header {
+    position: static;
+  }
+
+  .shopping-cart__items {
+    height: 72vh;
+    overflow-y: scroll;
+    padding-bottom: 0;
+  }
+
+  .shopping-cart__cta {
+    margin: 2.4rem auto 2.4rem auto;
+    position: static;
+    transform: unset;
   }
 }
 
@@ -199,6 +216,7 @@
     position: static;
     border-inline: 1.5px solid rgba(0, 0, 0, 0.12);
     overflow-y: visible;
+    box-shadow: none;
   }
 
   .shopping-cart__header {
