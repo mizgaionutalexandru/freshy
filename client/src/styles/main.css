@@ -411,6 +411,24 @@ header {
   }
 }
 
+.error {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.8rem;
+  margin-top: 12.8rem;
+}
+
+.error__icon {
+  width: 4rem;
+  height: 4rem;
+}
+
+.error__text {
+  font-size: 1.6rem;
+  font-weight: 500;
+}
+
 /* //////////////////////////// */
 /* ////// SHOPPING CART /////// */
 /* //////////////////////////// */
