@@ -62,6 +62,7 @@ html {
 
 body {
   position: relative;
+  overflow-x: hidden;
 }
 
 /* //////////////////////////// */
@@ -324,6 +325,12 @@ header {
   transition: all 100ms ease-in-out;
 }
 
+.pagination__direction--inactive {
+  cursor: default;
+  opacity: 0.6;
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.2);
+}
+
 .pagination__direction:hover,
 .pagination__direction:focus {
   color: var(--white);
@@ -331,9 +338,20 @@ header {
   border: 1.5px solid var(--green-four);
 }
 
+.pagination__direction--inactive:hover,
+.pagination__direction--inactive:focus {
+  color: var(--black);
+  background-color: transparent;
+  border: 1.5px solid var(--green-two);
+}
+
 .pagination__direction:focus {
   outline: var(--outline);
   outline-offset: 2px;
+}
+
+.pagination__direction--inactive:focus {
+  outline: none;
 }
 
 /* //////////////////////////// */

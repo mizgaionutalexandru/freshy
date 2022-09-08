@@ -100,6 +100,15 @@
     transform: rotate(180deg) scale(1.5);
   }
 
+  .pagination__arrow--inactive {
+    opacity: 0.5;
+    cursor: default;
+  }
+
+  .pagination__arrow:is(:first-child).pagination__arrow--inactive:hover {
+    transform: rotate(180deg);
+  }
+
   .pagination__arrow:not(:first-child) {
     width: 2.4rem;
     height: 2.4rem;
@@ -108,6 +117,10 @@
 
   .pagination__arrow:not(:first-child):hover {
     transform: scale(1.5);
+  }
+
+  .pagination__arrow:not(:first-child).pagination__arrow--inactive:hover {
+    transform: unset;
   }
 
   .pagination__page {
@@ -145,6 +158,21 @@
   .pagination__page:hover::before,
   .pagination__page:focus::before {
     background-color: var(--green-four);
+  }
+
+  .pagination__page--inactive {
+    cursor: default;
+    opacity: 0.6;
+  }
+
+  .pagination__page--inactive:hover,
+  .pagination__page--inactive:focus {
+    color: var(--black);
+  }
+
+  .pagination__page--inactive:hover::before,
+  .pagination__page--inactive:focus::before {
+    background-color: transparent;
   }
 
   .pagination__text {
@@ -201,7 +229,9 @@
 
   .pagination {
     padding-top: 0;
-    padding-bottom: 1.2rem;
+    padding-bottom: 0;
+    position: absolute;
+    bottom: 3.6rem;
   }
 
   .show-cart {
@@ -214,6 +244,7 @@
 
   .shopping-cart {
     --width: 100%;
+    max-width: 46rem;
     padding-top: 0;
     height: 100%;
     position: static;
