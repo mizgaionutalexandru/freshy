@@ -634,3 +634,8 @@ header {
     scrollbar-width: auto;
   }
 }
+
+*::selection {
+  background-color: var(--green-four);
+  color: var(--white);
+}
