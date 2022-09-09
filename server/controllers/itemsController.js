@@ -18,14 +18,14 @@ module.exports.getAllItems = catchAsync(async (req, res) => {
   const limit = parseInt(req.query.limit) || DEFAULT_LIMIT;
   const skip = (page - 1) * limit;
 
-  const items = await Item.find(filter)
-    .sort(sortString)
-    .limit(limit)
-    .skip(skip);
+  let items = await Item.find(filter).sort(sortString);
+  const pages = Math.ceil(items.length / limit);
+  items = items.filter((_, index) => index >= skip && index < skip + limit);
 
   const resObj = {
     status: 'success',
     page,
+    pages,
     items: items.length,
     data: {
       items,
