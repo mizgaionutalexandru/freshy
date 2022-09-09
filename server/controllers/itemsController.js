@@ -4,7 +4,7 @@ const catchAsync = require('./../utils/catchAsync');
 module.exports.getAllItems = catchAsync(async (req, res) => {
   // Filtering
   const queryObj = { ...req.query };
-  const excludedFields = ['sort', 'page', 'limit'];
+  const excludedFields = ['sort', 'page', 'limit', 'search'];
   excludedFields.forEach((exc) => delete queryObj[exc]);
   let filter = JSON.stringify(queryObj);
   filter = filter.replace(/\b(gte|gt|lte|lt)\b/g, (match) => `$${match}`);
@@ -21,6 +21,11 @@ module.exports.getAllItems = catchAsync(async (req, res) => {
   let items = await Item.find(filter).sort(sortString);
   const pages = Math.ceil(items.length / limit);
   items = items.filter((_, index) => index >= skip && index < skip + limit);
+
+  if (req.query.search)
+    items = items.filter((item) =>
+      item.name.toLowerCase().includes(req.query.search.toLowerCase())
+    );
 
   const resObj = {
     status: 'success',
