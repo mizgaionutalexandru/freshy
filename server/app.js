@@ -58,6 +58,9 @@ mongoose
     console.log(err);
   });
 
+// Serve static files
+app.use(express.static(`${__dirname}/public`));
+
 // API routes
 app.use('/api/v1/items', itemRouter);
 app.use('/api/v1/orders', orderRouter);
