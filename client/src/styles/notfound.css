@@ -169,6 +169,17 @@ header {
   }
 }
 
+@media (min-width: 980px) {
+  .container {
+    max-width: 96rem;
+    margin: 0 auto;
+  }
+
+  .main {
+    padding-inline: 0;
+  }
+}
+
 ::-webkit-scrollbar {
   width: 10px;
 }
