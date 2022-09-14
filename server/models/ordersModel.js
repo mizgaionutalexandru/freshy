@@ -13,6 +13,10 @@ const orderSchema = new mongoose.Schema(
         type: 'String',
         required: [true, 'A customer must have an email!'],
       },
+      phoneNumber: {
+        type: 'String',
+        required: [true, 'A customer must provide a phone number!'],
+      },
       billingAddress: {
         type: 'String',
       },
