@@ -28,7 +28,7 @@ html(lang='en')
                     button.form--search__btn(type="submit") Search
                 .items( role="list" aria-label="Items you can buy")
                     each item in items
-                        article.item
+                        article.item(data-id= item._id.toString())
                             img.item__img(src=`./imgs/${item.image}` alt="")/
                             .item__title: span.item__title__text= item.name
                             .item__quantity
