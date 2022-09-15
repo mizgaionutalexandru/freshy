@@ -43,7 +43,7 @@ app.use(
 );
 
 // Security HTTP headers
-app.use(helmet());
+app.use(helmet({ crossOriginResourcePolicy: { policy: 'cross-origin' } }));
 
 // Rate limiter
 const limiter = rateLimit({
