@@ -4,6 +4,7 @@ const helmet = require('helmet');
 const mongoSanitize = require('express-mongo-sanitize');
 const xssClean = require('xss-clean');
 const hpp = require('hpp');
+const cors = require('cors');
 
 const app = express();
 const mongoose = require('mongoose');
@@ -16,6 +17,9 @@ const errorController = require('./controllers/errorController');
 const itemRouter = require('./routes/itemsRoutes');
 const orderRouter = require('./routes/ordersRoutes');
 const viewRouter = require('./routes/viewsRoutes');
+
+// Enable all cors reqs
+app.use(cors());
 
 // Setting up the views
 app.set('views', `${__dirname}/views`);
