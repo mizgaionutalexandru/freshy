@@ -19,13 +19,15 @@ module.exports.getAllItems = catchAsync(async (req, res) => {
   const skip = (page - 1) * limit;
 
   let items = await Item.find(filter).sort(sortString);
-  const pages = Math.ceil(items.length / limit);
-  items = items.filter((_, index) => index >= skip && index < skip + limit);
 
   if (req.query.search)
     items = items.filter((item) =>
       item.name.toLowerCase().includes(req.query.search.toLowerCase())
     );
+
+  const pages = Math.ceil(items.length / limit);
+  // Search for a specific query
+  items = items.filter((_, index) => index >= skip && index < skip + limit);
 
   const resObj = {
     status: 'success',
