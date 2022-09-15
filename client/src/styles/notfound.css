@@ -2,7 +2,7 @@
 
 /*  Font sizes
     1   rem   10px
-    1.2 rem   14px
+    1.2 rem   12px
     1.6 rem   16px
     1.8 rem   18px   
     2   rem   20px
@@ -101,19 +101,19 @@ header {
 }
 
 .main__title {
-  font-size: clamp(2rem, 12vw, 5.2rem);
+  font-size: 2rem;
 }
 
 .main__p {
-  font-size: clamp(1.6rem, 8vw, 3.6rem);
+  font-size: 1.6rem;
   font-weight: 600;
   opacity: 0.7;
-  margin-bottom: 1.6rem;
+  margin-bottom: 2.4rem;
 }
 
 .main__cta:link,
 .main__cta:visited {
-  font-size: 1.8rem;
+  font-size: 1.4rem;
   padding: 0.8rem 1.6rem;
   background-color: var(--green-three);
   border-radius: 4px;
@@ -129,9 +129,27 @@ header {
   background-color: var(--green-four);
 }
 
+.container--svg {
+  width: 70%;
+  max-width: 42rem;
+  margin: 2.4rem auto 0 auto;
+  position: relative;
+}
+
 .main__img {
   width: 100%;
-  max-width: 42rem;
+}
+
+.container--svg::before {
+  content: attr(data-code);
+  position: absolute;
+  font-size: clamp(5.2rem, 10vw, 9.6rem);
+  font-weight: 700;
+  opacity: 0.3;
+  top: 0;
+  left: 0;
+  width: 2rem;
+  height: 2rem;
 }
 
 /* //////////////////////////// */
@@ -141,13 +159,49 @@ header {
 @media (min-width: 480px) {
   .main {
     margin: 0 auto;
-    max-width: 46rem;
+    max-width: 48rem;
+  }
+
+  .main__title {
+    font-size: 2.4rem;
+  }
+
+  .main__p {
+    font-size: 2rem;
+  }
+
+  .main__cta:link,
+  .main__cta:visited {
+    font-size: 1.6rem;
+  }
+}
+
+@media (min-width: 720px) {
+  .main__title {
+    font-size: 3rem;
+  }
+
+  .main__p {
+    font-size: 2.4rem;
+  }
+
+  .main {
+    flex-direction: row;
+    max-width: 68rem;
+    justify-content: space-between;
+    align-items: center;
+    padding-inline: 0;
+  }
+
+  .container--svg {
+    max-width: 28rem;
+    margin: 0;
   }
 }
 
 @media (min-width: 920px) {
   html {
-    font-size: 60%;
+    font-size: 50%;
   }
 
   header {
@@ -162,21 +216,27 @@ header {
     height: 3.2rem;
   }
 
-  .main {
-    flex-direction: row;
-    max-width: 96rem;
-    justify-content: space-between;
-  }
-}
-
-@media (min-width: 980px) {
   .container {
-    max-width: 96rem;
+    max-width: 1200px;
     margin: 0 auto;
   }
 
   .main {
-    padding-inline: 0;
+    max-width: 92rem;
+    padding-block: 6.4rem;
+  }
+
+  .main__title {
+    font-size: 4.4rem;
+  }
+
+  .main__p {
+    font-size: 3.6rem;
+  }
+
+  .main__cta:link,
+  .main__cta:visited {
+    font-size: 2rem;
   }
 }
 
