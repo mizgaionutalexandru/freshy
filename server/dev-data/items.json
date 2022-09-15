@@ -295,7 +295,7 @@
   },
   {
     "image": "onion_green.jpg",
-    "name": "Green Onion (bond)",
+    "name": "Green Onion(bond)",
     "price": 0.2,
     "defaultQuantity": 1,
     "unit": "pc"
