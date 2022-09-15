@@ -10,6 +10,15 @@ const sendErrorDev = (err, req, res) => {
       stack: err.stack,
     });
   }
+
+  // Rendered website
+  console.log('🐛🐛🔥 ERROR!! ', err);
+
+  return res.status(err.statusCode).render('error', {
+    title: 'Something went wrong',
+    code: err.statusCode,
+    message: err.message,
+  });
 };
 
 const sendErrorProd = (err, req, res) => {
@@ -29,6 +38,23 @@ const sendErrorProd = (err, req, res) => {
       message: 'Something went wrong!',
     });
   }
+
+  // Rendered website
+  if (err.isOperational)
+    // If the error is intentionally made - with AppError class
+    return res.status(err.statusCode).render('error', {
+      title: 'Something went wrong',
+      code: err.statusCode,
+      message: err.message,
+    });
+
+  // Other unknown errors
+  console.log('🐛🐛🔥 ERROR!! ', err);
+  return res.status(err.statusCode).render('error', {
+    title: 'Something went wrong',
+    code: err.statusCode,
+    message: 'Please try again later!',
+  });
 };
 
 const handleDuplicateFieldsError = (err, req, res) => {
