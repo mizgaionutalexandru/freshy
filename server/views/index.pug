@@ -1,0 +1,68 @@
+doctype html 
+html(lang='en')
+    head
+        meta(charset='UTF-8')/
+        meta(http-equiv='X-UA-Compatible' content='IE=edge')/
+        meta(name='viewport' content='width=device-width, initial-scale=1.0')/
+        link(rel='stylesheet' href='styles/index.css' type="text/css")/
+        title Freshy — #{title}
+    body
+        header
+            .container
+                .logo
+                    span.logo__name Freshy
+                    img.leaf(src="./icons/leaf.png" alt="")
+        section.hero
+            .container.container--hero
+                h1.hero__title Fresh foods everyday! 
+        .container.container--main
+            main.main
+                form.form--search(id="form" role="search" autocomplete="off")
+                    input.form--search__input(
+                        type="search"
+                        id="query" 
+                        name="q"
+                        placeholder="All items..."
+                        aria-label="Search through our items"
+                    )/
+                    button.form--search__btn(type="submit") Search
+                .items( role="list" aria-label="Items you can buy")
+                    each item in items
+                        article.item
+                            img.item__img(src=`./imgs/${item.image}` alt="")/
+                            .item__title: span.item__title__text= item.name
+                            .item__quantity
+                                span.item__quantity__text Quantity
+                                .item__quantity__modifier
+                                    img.item__decrease(src="./icons/minus.svg", alt="Decrease the quantity")/
+                                    input.item__input(type="text", value=`${item.defaultQuantity}`)/
+                                    img.item__increase(src="./icons/add.svg", alt="Increase the quantity")/
+                            span.item__price= `${item.price} / kg`
+                            span.item__cta(tabindex="0") Add to cart       
+                footer.pagination
+                    img.pagination__arrow(src="./icons/arrow.svg", alt="Move to the previous page - icon")
+                    span.pagination__direction(tabindex="0") &#8592; Previous
+                    each page in [1, 2, 3, 4, 5, 6, 7]
+                        .pagination__page(tabindex="0"): .pagination__text= page
+                    span.pagination__direction(tabindex="0") Next &#8594;
+                    img.pagination__arrow(src="./icons/arrow.svg", alt="Move to the next page - icon")
+            aside.shopping-cart.shopping-cart--hidden#cart
+                .shopping-cart__header
+                    h2.shopping-cart__title Your shopping cart
+                    svg.shopping-cart__close#hide-cart(tabindex="0"
+                        alt="Close the shopping cart icon"
+                        width="16"
+                        height="16"
+                        viewBox="0 0 16 16"
+                        fill="none"
+                        xmlns="http://www.w3.org/2000/svg"
+                    )
+                        g(clip-path="url(#clip0_28_5543)")
+                            path.shopping-cart__close__x(d="M0.712632 1.59712C0.579963 1.92879 0.557852 2.39313 0.662882 2.74139C0.723689 2.96803 1.03878 3.31629 3.24993 5.57166L5.76511 8.14212L3.24992 10.7126C0.497045 13.5207 0.574435 13.4212 0.596546 14.1067C0.618657 14.969 1.31517 15.6655 2.17752 15.6877C2.86297 15.7098 2.76347 15.7872 5.57163 13.0343L8.14209 10.5191L10.7126 13.0343C13.5207 15.7872 13.4212 15.7098 14.1067 15.6877C14.969 15.6655 15.6655 14.969 15.6876 14.1067C15.7097 13.4212 15.7871 13.5207 13.0343 10.7126L10.5191 8.14212L13.0343 5.57166C15.7871 2.7635 15.7097 2.863 15.6876 2.17754C15.6655 1.31519 14.969 0.618682 14.1067 0.596571C13.4212 0.57446 13.5207 0.497071 10.7126 3.24995L8.14209 5.76513L5.57163 3.24995C2.76347 0.497072 2.86297 0.574461 2.17752 0.596572C1.54734 0.607628 0.939276 1.02775 0.712632 1.59712Z"
+                                fill="#001714"
+                                fill-opacity="0.4"
+                            )/
+                        defs: clipPath#clip0_28_5543: rect(width="16" height="16" fill="white")/
+                .shopping-cart__items(role="list", aria-label="Items in your shopping cart")
+                .shopping-cart__cta(tabindex="0") Order
+        span.show-cart#show-cart(tabindex="0", data-items="0") Cart

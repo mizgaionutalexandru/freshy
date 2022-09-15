@@ -15,6 +15,11 @@ const errorController = require('./controllers/errorController');
 
 const itemRouter = require('./routes/itemsRoutes');
 const orderRouter = require('./routes/ordersRoutes');
+const viewRouter = require('./routes/viewsRoutes');
+
+// Setting up the views
+app.set('views', `${__dirname}/views`);
+app.set('view engine', 'pug');
 
 // Parses incoming requests - information will be on req.body
 app.use(express.json({ limit: '10kb' }));
@@ -64,6 +69,9 @@ app.use(express.static(`${__dirname}/public`));
 // API routes
 app.use('/api/v1/items', itemRouter);
 app.use('/api/v1/orders', orderRouter);
+
+// Website routes
+app.use('/', viewRouter);
 
 // Run for all methods - url not found
 app.all('*', (req, res, next) => {
