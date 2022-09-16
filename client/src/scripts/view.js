@@ -1,20 +1,63 @@
-import { BASE_URL } from './config.js';
+import { BASE_URL, ACTION_KEY } from './config.js';
 
-export const qs = (query) => document.querySelector(query);
-export const qsa = (query) => document.querySelectorAll(query);
+class ViewMain {
+  #qs = (query) => document.querySelector(query);
+  #qsa = (query) => document.querySelectorAll(query);
+  #parent = this.#qs('.main');
 
-export const addLoading = (parent) => {
-  const html = `<div class="loading">
+  constructor() {
+    this.#mainHandler();
+  }
+
+  bindSearch(handler) {
+    this.searchHandler = handler;
+  }
+
+  #mainHandler() {
+    this.#parent.addEventListener('click', (e) => {
+      e.preventDefault();
+      if (e.target.closest('.form--search__btn')) {
+        // get the query value typed in by the user
+        const query = this.#qs('.form--search__input').value;
+        this.searchHandler(query);
+      }
+    });
+
+    this.#parent.addEventListener('keydown', (e) => {
+      if (e.key != ACTION_KEY) return;
+      e.preventDefault();
+      if (document.activeElement.closest('.form--search')) {
+        // get the query value typed in by the user))
+        const query = this.#qs('.form--search__input').value;
+        this.searchHandler(query);
+      }
+    });
+  }
+
+  clear() {
+    // Remove the current elements and the pagination
+    this.#qs('.loading')?.remove();
+    this.#qs('.items')?.remove();
+    this.#qs('.pagination')?.remove();
+    this.#qs('.error')?.remove();
+  }
+
+  addLoading() {
+    const html = `<div class="loading">
                     <div class="loading__dot"></div>
                 </div>`;
 
-  parent.insertAdjacentHTML('beforeend', html);
-};
+    this.#parent.insertAdjacentHTML('beforeend', html);
+  }
 
-export const renderItems = (parent, items) => {
-  let html = ``;
-  items.forEach((item) => {
-    html += `
+  clearLoading() {
+    this.#qs('.loading')?.remove();
+  }
+
+  renderItems(items) {
+    let html = `<div class="items" role="list" aria-label="Items you can buy">`;
+    items.forEach((item) => {
+      html += `
     <article class="item" data-id=${item._id.toString()}>
         <img class="item__img" src="${BASE_URL}/imgs/${item.image}" alt="" />
             <div class="item__title">
@@ -41,12 +84,13 @@ export const renderItems = (parent, items) => {
         <span class="item__price">${item.price}€ / ${item.unit}</span>
         <span tabindex="0" class="item__cta">Add to cart</span>
     </article>`;
-  });
-  parent.insertAdjacentHTML('beforeend', html);
-};
+    });
+    html += `</div>`;
+    this.#parent.insertAdjacentHTML('beforeend', html);
+  }
 
-export const renderPagination = (parent, pages, activePage) => {
-  let html = `<footer class="pagination">
+  renderPagination = (activePage, totalPages) => {
+    let html = `<footer class="pagination">
     <img
         class="pagination__arrow ${
           activePage === 1 ? 'pagination__arrow--inactive' : ''
@@ -62,8 +106,8 @@ export const renderPagination = (parent, pages, activePage) => {
         >&#8592; Previous</span
     >`;
 
-  for (let page = 1; page <= pages; page++)
-    html += `
+    for (let page = 1; page <= totalPages; page++)
+      html += `
     <div tabindex="0" class="pagination__page ${
       page === activePage ? 'pagination__page--active' : ''
     }">
@@ -71,22 +115,22 @@ export const renderPagination = (parent, pages, activePage) => {
     </div>
     `;
 
-  html += `<span tabindex="0" class="pagination__direction ${
-    activePage === pages ? 'pagination__direction--inactive' : ''
-  }">Next &#8594;</span>
+    html += `<span tabindex="0" class="pagination__direction ${
+      activePage === totalPages ? 'pagination__direction--inactive' : ''
+    }">Next &#8594;</span>
     <img
         class="pagination__arrow ${
-          activePage === pages ? 'pagination__arrow--inactive' : ''
+          activePage === totalPages ? 'pagination__arrow--inactive' : ''
         }"
         src="${BASE_URL}/icons/arrow.svg"
         alt="Move to the next page icon"
     />
     </footer>`;
-  parent.insertAdjacentHTML('beforeend', html);
-};
+    this.#parent.insertAdjacentHTML('beforeend', html);
+  };
 
-export const renderError = (parent, message) => {
-  const html = `<div class="error">
+  renderError(message) {
+    const html = `<div class="error">
     <svg
       class="error__icon"
       viewBox="0 0 32 32"
@@ -111,5 +155,12 @@ export const renderError = (parent, message) => {
       Please try again :)
     </div>
   </div>`;
-  parent.insertAdjacentHTML('beforeend', html);
-};
+    this.#parent.insertAdjacentHTML('beforeend', html);
+  }
+}
+
+export const viewMain = new ViewMain();
+
+class ViewAside {}
+
+export const viewAside = new ViewAside();

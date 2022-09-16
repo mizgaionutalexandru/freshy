@@ -2,6 +2,7 @@
   "name": "client",
   "version": "1.0.0",
   "description": "",
+  "browserslist": "> 0.5%, last 2 versions, not dead",
   "scripts": {
     "start": "parcel src/index.html",
     "build": "parcel build ./src/*.html --public-url ./ --dist-dir ./dist"
