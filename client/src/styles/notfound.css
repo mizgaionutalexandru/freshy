@@ -73,6 +73,14 @@ header {
   align-items: center;
 }
 
+.logo:link,
+.logo:visited,
+.logo:hover,
+.logo:active {
+  text-decoration: none;
+  color: var(--black);
+}
+
 .logo__name {
   font-size: 1.8rem;
   font-weight: bold;
