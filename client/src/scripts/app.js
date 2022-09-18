@@ -6,10 +6,17 @@ class Controller {
     this.model = model;
     this.viewMain = viewMain;
     this.viewAside = viewAside;
-    this.viewMain.bindSearch(this.handleSearch);
+    this.viewMain.bindSearchAndPagination(this.handleSearchAndPagination);
+    // Show all the items initially
+    this.handleSearchAndPagination('');
   }
 
-  handleSearch = async (query) => {
+  /**
+   * Handles the search and pagination functionality, decides between the two
+   * using the type of the option param.
+   * @param {*} option page(number) or query(string)
+   */
+  handleSearchAndPagination = async (option) => {
     // Clear the main View
     this.viewMain.clear();
 
@@ -17,7 +24,10 @@ class Controller {
     this.viewMain.addLoading();
 
     // Get the data from the API
-    const data = await this.model.searchItems(query);
+    const data = await this.model.fetchItems({
+      page: typeof option === 'number' ? option : null,
+      query: typeof option === 'string' ? option : null,
+    });
 
     // Clear the loading animation
     this.viewMain.clearLoading();

@@ -17,28 +17,45 @@ class ViewMain extends View {
     this.#mainHandler();
   }
 
-  bindSearch(handler) {
-    this.searchHandler = handler;
+  bindSearchAndPagination(handler) {
+    this.searchAndPaginationHandler = handler;
   }
 
   #mainHandler() {
     this.#parent.addEventListener('click', (e) => {
-      e.preventDefault();
+      // Handle search
       if (e.target.closest('.form--search__btn')) {
+        e.preventDefault();
         // get the query value typed in by the user
         const query = this.qs('.form--search__input').value;
-        this.searchHandler(query);
+        return this.searchAndPaginationHandler(query);
+      }
+
+      // Handle pagination
+      if (e.target.closest('[data-page]')) {
+        // If the button is inactive then ignore the click
+        if (
+          e.target.closest('.pagination__direction--inactive') ||
+          e.target.closest('.pagination__arrow--inactive')
+        )
+          return;
+        // get the next page
+        const page = parseInt(e.target.closest('[data-page]').dataset.page);
+        return this.searchAndPaginationHandler(page);
       }
     });
 
     this.#parent.addEventListener('keydown', (e) => {
       if (e.key != ACTION_KEY) return;
       e.preventDefault();
+      // Handle search
       if (document.activeElement.closest('.form--search')) {
         // get the query value typed in by the user))
         const query = this.qs('.form--search__input').value;
-        this.searchHandler(query);
+        this.searchAndPaginationHandler(query);
       }
+
+      // Handle pagination
     });
   }
 
@@ -48,6 +65,7 @@ class ViewMain extends View {
     this.qs('.items')?.remove();
     this.qs('.pagination')?.remove();
     this.qs('.error')?.remove();
+    this.qs('.form--search__input').value = '';
   }
 
   addLoading() {
@@ -100,6 +118,7 @@ class ViewMain extends View {
   renderPagination(activePage, totalPages) {
     let html = `<footer class="pagination">
     <img
+        data-page=${activePage === 1 ? 1 : activePage - 1}
         class="pagination__arrow ${
           activePage === 1 ? 'pagination__arrow--inactive' : ''
         }"
@@ -107,6 +126,7 @@ class ViewMain extends View {
         alt="Move to the previous page icon"
     />
     <span
+        data-page=${activePage === 1 ? 1 : activePage - 1}
         tabindex="0"
         class="pagination__direction ${
           activePage === 1 ? 'pagination__direction--inactive' : ''
@@ -116,17 +136,21 @@ class ViewMain extends View {
 
     for (let page = 1; page <= totalPages; page++)
       html += `
-    <div tabindex="0" class="pagination__page ${
-      page === activePage ? 'pagination__page--active' : ''
-    }">
+    <div data-page=${page} tabindex="0" class="pagination__page ${
+        page === activePage ? 'pagination__page--active' : ''
+      }">
         <span class="pagination__text">${page}</span>
     </div>
     `;
 
-    html += `<span tabindex="0" class="pagination__direction ${
-      activePage === totalPages ? 'pagination__direction--inactive' : ''
-    }">Next &#8594;</span>
+    html += `<span data-page=${
+      activePage === totalPages ? totalPages : activePage + 1
+    }
+      tabindex="0" class="pagination__direction ${
+        activePage === totalPages ? 'pagination__direction--inactive' : ''
+      }">Next &#8594;</span>
     <img
+        data-page=${activePage === totalPages ? totalPages : activePage + 1}
         class="pagination__arrow ${
           activePage === totalPages ? 'pagination__arrow--inactive' : ''
         }"
