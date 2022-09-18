@@ -172,6 +172,7 @@ export const viewMain = new ViewMain();
 class ViewAside extends View {
   #openCartBtn = this.qs('#show-cart');
   #closeCartBtn = this.qs('#hide-cart');
+  #parent = this.qs('#cart');
 
   constructor() {
     super();
@@ -194,6 +195,16 @@ class ViewAside extends View {
     this.#closeCartBtn.addEventListener('click', () =>
       this.#toggleCartVisibilityHandler()
     );
+
+    this.#openCartBtn.addEventListener('keydown', (e) => {
+      if (e.key === ACTION_KEY) this.#toggleCartVisibilityHandler();
+    });
+
+    this.#parent.addEventListener('keydown', (e) => {
+      if (e.key != ACTION_KEY) return;
+      e.preventDefault();
+      if (e.target.closest('#hide-cart')) this.#toggleCartVisibilityHandler();
+    });
   }
 
   #animationStopperHandler(resizeTimer) {
@@ -207,6 +218,10 @@ class ViewAside extends View {
 
   #toggleCartVisibilityHandler() {
     cart.classList.toggle('shopping-cart--hidden');
+    // If the cart will hide then the open cart button will be focused
+    if (this.qs('.shopping-cart--hidden')) this.#openCartBtn.focus();
+    // If the cart will shown then the close cart button will be focused
+    else this.#closeCartBtn.focus();
     // Toggle tabindexes
     this.qsa('#cart [tabindex]').forEach((tabbable) => {
       tabbable.tabIndex = tabbable.tabIndex < 0 ? '0' : '-1';
