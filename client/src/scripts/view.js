@@ -1,11 +1,19 @@
-import { BASE_URL, ACTION_KEY } from './config.js';
+import {
+  BASE_URL,
+  ACTION_KEY,
+  WINDOW_WIDTH_SHOPPING_CART_SHOWN,
+} from './config.js';
 
-class ViewMain {
-  #qs = (query) => document.querySelector(query);
-  #qsa = (query) => document.querySelectorAll(query);
-  #parent = this.#qs('.main');
+class View {
+  qs = (query) => document.querySelector(query);
+  qsa = (query) => document.querySelectorAll(query);
+}
+
+class ViewMain extends View {
+  #parent = this.qs('.main');
 
   constructor() {
+    super();
     this.#mainHandler();
   }
 
@@ -18,7 +26,7 @@ class ViewMain {
       e.preventDefault();
       if (e.target.closest('.form--search__btn')) {
         // get the query value typed in by the user
-        const query = this.#qs('.form--search__input').value;
+        const query = this.qs('.form--search__input').value;
         this.searchHandler(query);
       }
     });
@@ -28,7 +36,7 @@ class ViewMain {
       e.preventDefault();
       if (document.activeElement.closest('.form--search')) {
         // get the query value typed in by the user))
-        const query = this.#qs('.form--search__input').value;
+        const query = this.qs('.form--search__input').value;
         this.searchHandler(query);
       }
     });
@@ -36,10 +44,10 @@ class ViewMain {
 
   clear() {
     // Remove the current elements and the pagination
-    this.#qs('.loading')?.remove();
-    this.#qs('.items')?.remove();
-    this.#qs('.pagination')?.remove();
-    this.#qs('.error')?.remove();
+    this.qs('.loading')?.remove();
+    this.qs('.items')?.remove();
+    this.qs('.pagination')?.remove();
+    this.qs('.error')?.remove();
   }
 
   addLoading() {
@@ -51,7 +59,7 @@ class ViewMain {
   }
 
   clearLoading() {
-    this.#qs('.loading')?.remove();
+    this.qs('.loading')?.remove();
   }
 
   renderItems(items) {
@@ -89,7 +97,7 @@ class ViewMain {
     this.#parent.insertAdjacentHTML('beforeend', html);
   }
 
-  renderPagination = (activePage, totalPages) => {
+  renderPagination(activePage, totalPages) {
     let html = `<footer class="pagination">
     <img
         class="pagination__arrow ${
@@ -127,7 +135,7 @@ class ViewMain {
     />
     </footer>`;
     this.#parent.insertAdjacentHTML('beforeend', html);
-  };
+  }
 
   renderError(message) {
     const html = `<div class="error">
@@ -161,6 +169,67 @@ class ViewMain {
 
 export const viewMain = new ViewMain();
 
-class ViewAside {}
+class ViewAside extends View {
+  #openCartBtn = this.qs('#show-cart');
+  #closeCartBtn = this.qs('#hide-cart');
+
+  constructor() {
+    super();
+    this.#mainHandler();
+    this.#initTabIndexes();
+  }
+
+  #mainHandler() {
+    let resizeTimer;
+    window.addEventListener('resize', () => {
+      // disables animations during window resize
+      resizeTimer = this.#animationStopperHandler(resizeTimer);
+      // Always make shopping cart elements tabbable for >= 1150px
+      this.#tabIndexesHandler();
+    });
+
+    this.#openCartBtn.addEventListener('click', () =>
+      this.#toggleCartVisibilityHandler()
+    );
+    this.#closeCartBtn.addEventListener('click', () =>
+      this.#toggleCartVisibilityHandler()
+    );
+  }
+
+  #animationStopperHandler(resizeTimer) {
+    document.body.classList.add('resize-animation-stopper');
+    clearTimeout(resizeTimer);
+    resizeTimer = setTimeout(() => {
+      document.body.classList.remove('resize-animation-stopper');
+    }, 400);
+    return resizeTimer;
+  }
+
+  #toggleCartVisibilityHandler() {
+    cart.classList.toggle('shopping-cart--hidden');
+    // Toggle tabindexes
+    this.qsa('#cart [tabindex]').forEach((tabbable) => {
+      tabbable.tabIndex = tabbable.tabIndex < 0 ? '0' : '-1';
+    });
+  }
+
+  #tabIndexesHandler() {
+    if (window.innerWidth >= WINDOW_WIDTH_SHOPPING_CART_SHOWN)
+      this.qsa('#cart [tabindex]').forEach((tabbable) => {
+        tabbable.tabIndex = '0';
+      });
+    else
+      this.qsa('#cart [tabindex]').forEach((tabbable) => {
+        tabbable.tabIndex = '-1';
+      });
+  }
+
+  #initTabIndexes() {
+    this.qsa('#cart [tabindex]').forEach((tabbable) => {
+      tabbable.tabIndex =
+        window.innerWidth >= WINDOW_WIDTH_SHOPPING_CART_SHOWN ? '0' : '-1';
+    });
+  }
+}
 
 export const viewAside = new ViewAside();
