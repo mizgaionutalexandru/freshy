@@ -56,6 +56,19 @@ class ViewMain extends View {
       }
 
       // Handle pagination
+      if (document.activeElement.closest('[data-page]')) {
+        // If the button is inactive then ignore the click
+        if (
+          document.activeElement.closest('.pagination__direction--inactive') ||
+          document.activeElement.closest('.pagination__arrow--inactive')
+        )
+          return;
+        // get the next page
+        const page = parseInt(
+          document.activeElement.closest('[data-page]').dataset.page
+        );
+        return this.searchAndPaginationHandler(page);
+      }
     });
   }
 
