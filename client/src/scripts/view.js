@@ -2,6 +2,7 @@ import {
   BASE_URL,
   ACTION_KEY,
   WINDOW_WIDTH_SHOPPING_CART_SHOWN,
+  API_MIN_QUANTITY,
 } from './config.js';
 
 class View {
@@ -19,6 +20,10 @@ class ViewMain extends View {
 
   bindSearchAndPagination(handler) {
     this.searchAndPaginationHandler = handler;
+  }
+
+  bindAddToCart(handler) {
+    this.addToCartHandler = handler;
   }
 
   #mainHandler() {
@@ -42,6 +47,32 @@ class ViewMain extends View {
         // get the next page
         const page = parseInt(e.target.closest('[data-page]').dataset.page);
         return this.searchAndPaginationHandler(page);
+      }
+
+      // Product clicks
+      const item = e.target.closest('.item');
+      if (item) {
+        // Handle quantity increase
+        if (e.target.closest('.item__increase'))
+          this.#quantityIncreaseHandler(item);
+
+        // Handle quantity decrease
+        if (e.target.closest('.item__decrease'))
+          this.#quantityDecreaseHandler(item);
+
+        // Handle adding product to cart
+        if (e.target.closest('.item__cta')) {
+          // Get the item's id
+          const id = item.dataset.id;
+          // Get the item's quantity and round it to 2 decimals
+          let quantity = parseFloat(item.querySelector('.item__input').value);
+          quantity = Math.round((quantity + Number.EPSILON) * 100) / 100;
+          quantity = quantity < API_MIN_QUANTITY ? API_MIN_QUANTITY : quantity;
+          // Modify the input value
+          item.querySelector('.item__input').value = quantity;
+          //
+          this.addToCartHandler({ item: id, quantity });
+        }
       }
     });
 
@@ -72,6 +103,34 @@ class ViewMain extends View {
     });
   }
 
+  #quantityIncreaseHandler(item) {
+    const currentValue = parseFloat(item.querySelector('.item__input').value);
+    let newValue;
+    if (currentValue < API_MIN_QUANTITY) newValue = API_MIN_QUANTITY;
+    else if (currentValue % API_MIN_QUANTITY === 0)
+      newValue = currentValue + API_MIN_QUANTITY;
+    else {
+      newValue =
+        (parseInt(currentValue / API_MIN_QUANTITY) + 1) * API_MIN_QUANTITY;
+    }
+
+    item.querySelector('.item__input').value = newValue;
+  }
+
+  #quantityDecreaseHandler(item) {
+    const currentValue = parseFloat(item.querySelector('.item__input').value);
+    let newValue;
+    if (currentValue <= API_MIN_QUANTITY) newValue = API_MIN_QUANTITY;
+    else if (currentValue % API_MIN_QUANTITY === 0)
+      newValue = currentValue - API_MIN_QUANTITY;
+    else {
+      newValue =
+        (parseInt(currentValue / API_MIN_QUANTITY) - 1) * API_MIN_QUANTITY;
+    }
+
+    item.querySelector('.item__input').value = newValue;
+  }
+
   clear() {
     // Remove the current elements and the pagination
     this.qs('.loading')?.remove();
@@ -97,7 +156,9 @@ class ViewMain extends View {
     let html = `<div class="items" role="list" aria-label="Items you can buy">`;
     items.forEach((item) => {
       html += `
-    <article class="item" data-id=${item._id.toString()}>
+    <article class="item" data-id=${item._id.toString()} data-default-quantity=${
+        item.defaultQuantity
+      }>
         <img class="item__img" src="${BASE_URL}/imgs/${item.image}" alt="" />
             <div class="item__title">
             <span class="item__title__text"> ${item.name} </span>
@@ -210,6 +271,7 @@ class ViewAside extends View {
   #openCartBtn = this.qs('#show-cart');
   #closeCartBtn = this.qs('#hide-cart');
   #parent = this.qs('#cart');
+  #itemsContainer = this.qs('.shopping-cart__items');
 
   constructor() {
     super();
@@ -281,6 +343,86 @@ class ViewAside extends View {
       tabbable.tabIndex =
         window.innerWidth >= WINDOW_WIDTH_SHOPPING_CART_SHOWN ? '0' : '-1';
     });
+  }
+
+  renderItems(items) {
+    items.forEach((item) => {
+      // Check if the item is already rendered
+      const renderedItem = this.#parent.querySelector(`[data-id="${item.id}"`);
+      if (!renderedItem) {
+        const markup = this.#getCartItemMarkup(item);
+        return this.#itemsContainer.insertAdjacentHTML('beforeend', markup);
+      }
+      // If it is, modify the existing element
+      renderedItem.querySelector(
+        '.shopping-cart__info__quantity'
+      ).innerHTML = `${item.quantity} ${item.unit}`;
+      renderedItem.querySelector(
+        '.shopping-cart__info__price'
+      ).innerHTML = `${item.price}€`;
+    });
+  }
+
+  #getCartItemMarkup(item) {
+    const tabindex =
+      window.innerWidth >= WINDOW_WIDTH_SHOPPING_CART_SHOWN
+        ? '0'
+        : this.#parent.classList.contains('shopping-cart--hidden')
+        ? '-1'
+        : '0';
+
+    return `
+    <article class="shopping-cart__item" data-id=${item.id}>
+      <img class="shopping-cart__img" src="${BASE_URL}/imgs/${item.image}" alt="" />
+      <div class="shopping-cart__info">
+        <div class="shopping-cart__info__header">
+          <span class="shopping-cart__info__title"
+            >${item.name}</span
+          >
+          <svg
+            tabindex="${tabindex}"
+            class="shopping-cart__remove"
+            width="16"
+            height="16"
+            viewBox="0 0 16 16"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <g clip-path="url(#clip0_28_5543)">
+              <path
+                class="shopping-cart__remove__x"
+                d="M0.712632 1.59712C0.579963 1.92879 0.557852 2.39313 0.662882 2.74139C0.723689 2.96803 1.03878 3.31629 3.24993 5.57166L5.76511 8.14212L3.24992 10.7126C0.497045 13.5207 0.574435 13.4212 0.596546 14.1067C0.618657 14.969 1.31517 15.6655 2.17752 15.6877C2.86297 15.7098 2.76347 15.7872 5.57163 13.0343L8.14209 10.5191L10.7126 13.0343C13.5207 15.7872 13.4212 15.7098 14.1067 15.6877C14.969 15.6655 15.6655 14.969 15.6876 14.1067C15.7097 13.4212 15.7871 13.5207 13.0343 10.7126L10.5191 8.14212L13.0343 5.57166C15.7871 2.7635 15.7097 2.863 15.6876 2.17754C15.6655 1.31519 14.969 0.618682 14.1067 0.596571C13.4212 0.57446 13.5207 0.497071 10.7126 3.24995L8.14209 5.76513L5.57163 3.24995C2.76347 0.497072 2.86297 0.574461 2.17752 0.596572C1.54734 0.607628 0.939276 1.02775 0.712632 1.59712Z"
+                fill="#001714"
+                fill-opacity="0.4"
+              />
+            </g>
+            <defs>
+              <clipPath id="clip0_28_5543">
+                <rect width="16" height="16" fill="white" />
+              </clipPath>
+            </defs>
+          </svg>
+        </div>
+        <div class="shopping-cart__info__body">
+          <span class="shopping-cart__info__quantity">${item.quantity} ${item.unit}</span>
+          <span class="shopping-cart__info__price">${item.price}€</span>
+        </div>
+      </div>
+    </article>`;
+  }
+
+  animateCartBtn() {
+    this.#openCartBtn.classList.add('item-added-animation');
+    setTimeout(
+      () => this.#openCartBtn.classList.remove('item-added-animation'),
+      100
+    );
+  }
+
+  updateCounter() {
+    const noItems =
+      this.#itemsContainer.querySelectorAll('[data-id]').length || 0;
+    this.#openCartBtn.dataset.items = noItems;
   }
 }
 

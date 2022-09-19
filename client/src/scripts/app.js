@@ -7,9 +7,31 @@ class Controller {
     this.viewMain = viewMain;
     this.viewAside = viewAside;
     this.viewMain.bindSearchAndPagination(this.handleSearchAndPagination);
-    // Show all the items initially
-    this.handleSearchAndPagination('');
+    this.viewMain.bindAddToCart(this.handleAddToCart);
+    this.#init();
   }
+
+  #init = async () => {
+    // Show all the items initially
+    await this.handleSearchAndPagination('');
+    // Render the existing shopping cart items;
+    const items = await this.model.getCartItems();
+    this.viewAside.renderItems(items);
+    // Update shopping cart product counter
+    this.viewAside.updateCounter();
+  };
+
+  handleAddToCart = async (option) => {
+    // Add the product to the app's state
+    this.model.addItem(option);
+    // Render the product in the shopping cart
+    const items = await this.model.getCartItems();
+    this.viewAside.renderItems(items);
+    // Update shopping cart product counter
+    this.viewAside.updateCounter();
+    // Cart button animation - indicator
+    this.viewAside.animateCartBtn();
+  };
 
   /**
    * Handles the search and pagination functionality, decides between the two
