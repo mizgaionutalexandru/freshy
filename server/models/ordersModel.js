@@ -36,6 +36,7 @@ const orderSchema = new mongoose.Schema(
           type: 'Number',
           required: [true, "An order must contain the item's quantity!"],
           min: [0.25, "Item's quantity too low. Minimum is 0.25!"],
+          max: [50, "Item's quantity too big. Maximum is 50!"],
         },
       },
     ],
@@ -77,6 +78,15 @@ orderSchema.pre('save', function (next) {
   }
 
   this.shoppingCart = shoppingCart;
+  next();
+});
+
+orderSchema.pre('save', function (next) {
+  // Round the quantity to 2 decimals
+  for (const orderItem of this.shoppingCart) {
+    orderItem.quantity =
+      Math.round((orderItem.quantity + Number.EPSILON) * 100) / 100;
+  }
   next();
 });
 
