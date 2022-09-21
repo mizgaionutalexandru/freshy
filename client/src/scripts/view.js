@@ -201,7 +201,7 @@ class ViewMain extends View {
     />
     <span
         data-page=${activePage === 1 ? 1 : activePage - 1}
-        tabindex="0"
+        ${activePage != 1 ? 'tabindex="0"' : ''}
         class="pagination__direction ${
           activePage === 1 ? 'pagination__direction--inactive' : ''
         }"
@@ -220,9 +220,10 @@ class ViewMain extends View {
     html += `<span data-page=${
       activePage === totalPages ? totalPages : activePage + 1
     }
-      tabindex="0" class="pagination__direction ${
-        activePage === totalPages ? 'pagination__direction--inactive' : ''
-      }">Next &#8594;</span>
+    ${activePage != totalPages ? 'tabindex="0"' : ''}
+       class="pagination__direction ${
+         activePage === totalPages ? 'pagination__direction--inactive' : ''
+       }">Next &#8594;</span>
     <img
         data-page=${activePage === totalPages ? totalPages : activePage + 1}
         class="pagination__arrow ${
