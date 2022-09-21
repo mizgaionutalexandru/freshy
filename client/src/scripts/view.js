@@ -3,6 +3,7 @@ import {
   ACTION_KEY,
   WINDOW_WIDTH_SHOPPING_CART_SHOWN,
   API_MIN_QUANTITY,
+  API_MAX_QUANTITY,
 } from './config.js';
 
 class View {
@@ -68,6 +69,7 @@ class ViewMain extends View {
           let quantity = parseFloat(item.querySelector('.item__input').value);
           quantity = Math.round((quantity + Number.EPSILON) * 100) / 100;
           quantity = quantity < API_MIN_QUANTITY ? API_MIN_QUANTITY : quantity;
+          quantity = quantity > API_MAX_QUANTITY ? API_MAX_QUANTITY : quantity;
           // Modify the input value
           item.querySelector('.item__input').value = quantity;
           //
