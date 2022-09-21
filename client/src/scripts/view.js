@@ -282,6 +282,10 @@ class ViewAside extends View {
     this.#initTabIndexes();
   }
 
+  bindRemoveFromCart(handler) {
+    this.removeFromCartHandler = handler;
+  }
+
   #mainHandler() {
     let resizeTimer;
     window.addEventListener('resize', () => {
@@ -302,10 +306,24 @@ class ViewAside extends View {
       if (e.key === ACTION_KEY) this.#toggleCartVisibilityHandler();
     });
 
+    this.#parent.addEventListener('click', (e) => {
+      if (e.target.closest('.shopping-cart__remove__x')) {
+        const id = e.target.closest('[data-id]').dataset.id;
+        this.removeFromCartHandler(id);
+      }
+    });
+
     this.#parent.addEventListener('keydown', (e) => {
       if (e.key != ACTION_KEY) return;
+
       e.preventDefault();
-      if (e.target.closest('#hide-cart')) this.#toggleCartVisibilityHandler();
+      if (document.activeElement.closest('#hide-cart'))
+        this.#toggleCartVisibilityHandler();
+
+      if (document.activeElement.closest('[data-id]')) {
+        const id = document.activeElement.closest('[data-id]').dataset.id;
+        this.removeFromCartHandler(id);
+      }
     });
   }
 
@@ -426,6 +444,10 @@ class ViewAside extends View {
     const noItems =
       this.#itemsContainer.querySelectorAll('[data-id]').length || 0;
     this.#openCartBtn.dataset.items = noItems;
+  }
+
+  removeItem(id) {
+    this.#parent.querySelector(`[data-id="${id}"`).remove();
   }
 }
 

@@ -27,6 +27,13 @@ class Model {
     this.#commitItemsToLocalStorage();
   }
 
+  removeItem(id) {
+    this.state.cartItems = this.state.cartItems.filter(
+      (item) => item.item != id
+    );
+    this.#commitItemsToLocalStorage();
+  }
+
   async getCartItems() {
     const cartItemsFullInfo = [];
     for (const item of this.state.cartItems) {

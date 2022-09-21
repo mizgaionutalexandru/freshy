@@ -8,6 +8,7 @@ class Controller {
     this.viewAside = viewAside;
     this.viewMain.bindSearchAndPagination(this.handleSearchAndPagination);
     this.viewMain.bindAddToCart(this.handleAddToCart);
+    this.viewAside.bindRemoveFromCart(this.handleRemoveFromCart);
     this.#init();
   }
 
@@ -17,6 +18,15 @@ class Controller {
     // Render the existing shopping cart items;
     const items = await this.model.getCartItems();
     this.viewAside.renderItems(items);
+    // Update shopping cart product counter
+    this.viewAside.updateCounter();
+  };
+
+  handleRemoveFromCart = (id) => {
+    // Remove the product from the app's state
+    this.model.removeItem(id);
+    // Remove the product from the view
+    this.viewAside.removeItem(id);
     // Update shopping cart product counter
     this.viewAside.updateCounter();
   };
