@@ -102,6 +102,22 @@ class ViewMain extends View {
         );
         return this.searchAndPaginationHandler(page);
       }
+
+      // Handle adding product to cart
+      const item = document.activeElement.closest('.item');
+      if (item) {
+        // Get the item's id
+        const id = item.dataset.id;
+        // Get the item's quantity and round it to 2 decimals
+        let quantity = parseFloat(item.querySelector('.item__input').value);
+        quantity = Math.round((quantity + Number.EPSILON) * 100) / 100;
+        quantity = quantity < API_MIN_QUANTITY ? API_MIN_QUANTITY : quantity;
+        quantity = quantity > API_MAX_QUANTITY ? API_MAX_QUANTITY : quantity;
+        // Modify the input value
+        item.querySelector('.item__input').value = quantity;
+        //
+        this.addToCartHandler({ item: id, quantity });
+      }
     });
   }
 
