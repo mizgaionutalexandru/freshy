@@ -250,7 +250,11 @@ header {
 
 @media (min-width: 1440px) {
   html {
-    font-size: 60%;
+    font-size: 58%;
+  }
+
+  .container {
+    max-width: 1440px;
   }
 }
 
