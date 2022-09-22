@@ -248,6 +248,12 @@ header {
   }
 }
 
+@media (min-width: 1440px) {
+  html {
+    font-size: 60%;
+  }
+}
+
 ::-webkit-scrollbar {
   width: 10px;
 }
