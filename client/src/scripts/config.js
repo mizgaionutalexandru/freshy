@@ -5,3 +5,4 @@ export const ITEMS_ON_PAGE = 10;
 export const API_MIN_QUANTITY = 0.25;
 export const API_MAX_QUANTITY = 50;
 export const STORAGE_KEY = `freshy%#%shopping%#%cart%#%items`;
+export const ORDER_PAGE = 'order.html';
