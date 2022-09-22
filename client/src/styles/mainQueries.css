@@ -208,6 +208,24 @@
     position: static;
     transform: unset;
   }
+
+  @keyframes noItems {
+    0% {
+      transform: unset;
+    }
+    25% {
+      transform: translateX( var(--length));
+    }
+    50% {
+      transform: unset;
+    }
+    75% {
+      transform: translateX(calc( -1 * var(--length)));
+    }
+    100% {
+      transform: unset;
+    }
+  }
 }
 
 @media (min-width: 1150px) {
