@@ -104,6 +104,7 @@ header {
 .user-input,
 .shopping-cart {
   width: min(90%, 40rem);
+  max-width: 32rem;
   margin: 0 auto;
 }
 
@@ -131,6 +132,7 @@ header {
   font-size: 1.8rem;
   padding-left: 1.2rem;
   padding-bottom: 0.4rem;
+  height: 0.4rem;
 }
 
 .form__input {
@@ -163,6 +165,7 @@ header {
   margin-top: 1.2rem;
   cursor: pointer;
   transform: background-color 150ms ease-in-out;
+  font-family: 'Poppins', sans-serif;
 }
 
 .form__cta:hover {
@@ -190,6 +193,7 @@ h2.section-title {
   border-bottom: 1.5px solid rgba(0, 0, 0, 0.12);
   align-items: center;
   padding-block: 0.8rem;
+  padding-inline: 0.4rem;
 }
 
 .item__img {
@@ -249,6 +253,52 @@ h2.section-title {
   .container {
     max-width: 1200px;
     margin: 0 auto;
+  }
+
+  .main {
+    flex-direction: row;
+    justify-content: center;
+    gap: 0;
+    padding-block: 4.8rem;
+  }
+
+  .user-input,
+  .shopping-cart {
+    margin: 0;
+    max-width: 36rem;
+  }
+
+  .user-input {
+    border-right: 1px solid rgba(0, 0, 0, 0.12);
+    padding-right: 3.2rem;
+  }
+
+  .shopping-cart {
+    padding-left: 3.2rem;
+  }
+
+  .section-title {
+    padding-bottom: 1em;
+  }
+
+  .items {
+    height: 40.32rem;
+    overflow: scroll;
+  }
+
+  .item {
+    padding-block: 1.2rem;
+  }
+
+  .form-group,
+  .item,
+  .total,
+  .form__cta {
+    max-width: 36rem;
+  }
+
+  .total {
+    margin-top: 1rem;
   }
 }
 
