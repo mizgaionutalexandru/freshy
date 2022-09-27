@@ -237,6 +237,62 @@ h2.section-title {
   font-weight: 500;
 }
 
+.error {
+  position: fixed;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%) translateY(-100%);
+  z-index: 9;
+  background-color: var(--red);
+  color: var(--white);
+  font-weight: 500;
+  width: 32rem;
+  text-align: center;
+  padding-block: 2.4rem;
+  border-radius: 0 0 4px 4px;
+  font-size: 1.6rem;
+  transition: transform 150ms ease-in-out;
+}
+
+.error--shown {
+  transform: translateX(-50%) translateY(0);
+}
+
+.loading {
+  position: relative;
+  overflow: hidden;
+}
+
+.loading::before,
+.loading::after {
+  content: '';
+  width: 2.4rem;
+  top: 0;
+  left: -2.4rem;
+  height: 100%;
+  opacity: 0.6;
+  position: absolute;
+  background-color: var(--green-two);
+  border-radius: 4px;
+  animation-name: loading;
+  animation-duration: 1300ms;
+  animation-iteration-count: infinite;
+  animation-timing-function: ease-in-out;
+}
+
+@keyframes loading {
+  0% {
+    left: -2.4rem;
+  }
+  100% {
+    left: 100%;
+  }
+}
+
+.loading::after {
+  animation-delay: 650ms;
+}
+
 @media (min-width: 920px) {
   html {
     font-size: 50%;
