@@ -293,6 +293,25 @@ h2.section-title {
   animation-delay: 650ms;
 }
 
+.error--items {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.8rem;
+  margin-block: 2.4rem;
+  align-self: center;
+}
+
+.error--items__icon {
+  width: 4rem;
+  height: 4rem;
+}
+
+.error--items__text {
+  font-size: 1.4rem;
+  font-weight: 500;
+}
+
 @media (min-width: 920px) {
   html {
     font-size: 50%;
@@ -406,6 +425,10 @@ h2.section-title {
 
   .total {
     margin-top: 1rem;
+  }
+
+  .error--items__text {
+    font-size: 1.6rem;
   }
 }
 
