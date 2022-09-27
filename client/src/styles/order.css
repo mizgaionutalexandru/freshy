@@ -101,6 +101,10 @@ header {
   padding-block: 2.4rem;
 }
 
+.home-cta {
+  display: none;
+}
+
 .user-input,
 .shopping-cart {
   width: min(90%, 40rem);
@@ -164,7 +168,7 @@ header {
   background-color: var(--green-three);
   margin-top: 1.2rem;
   cursor: pointer;
-  transform: background-color 150ms ease-in-out;
+  transition: background-color 150ms ease-in-out;
   font-family: 'Poppins', sans-serif;
 }
 
@@ -251,7 +255,6 @@ h2.section-title {
   }
 
   .container {
-    max-width: 1200px;
     margin: 0 auto;
   }
 
@@ -260,6 +263,54 @@ h2.section-title {
     justify-content: center;
     gap: 0;
     padding-block: 4.8rem;
+    position: relative;
+    margin-inline: 3.2rem;
+  }
+
+  .home-cta:link,
+  .home-cta:visited {
+    display: flex;
+    gap: 1.2rem;
+    text-decoration: none;
+    color: var(--black);
+    font-size: 2rem;
+    align-items: center;
+    position: absolute;
+    left: 0;
+  }
+
+  .home-cta:hover,
+  .home-cta:active,
+  .home-cta:focus {
+    opacity: 0.8;
+  }
+
+  .home-cta__text {
+    position: relative;
+  }
+
+  .home-cta__text::before {
+    content: '';
+    width: 110%;
+    left: -5%;
+    bottom: 0;
+    height: 0.2rem;
+    background-color: var(--black);
+    position: absolute;
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 150ms ease-in-out;
+  }
+
+  .home-cta:hover .home-cta__text::before,
+  .home-cta:focus .home-cta__text::before {
+    transform: scaleX(1);
+  }
+
+  .home-cta__img {
+    transform: rotate(180deg);
+    width: 2.4rem;
+    height: 2.4rem;
   }
 
   .user-input,
@@ -299,6 +350,16 @@ h2.section-title {
 
   .total {
     margin-top: 1rem;
+  }
+}
+
+@media (min-width: 1240px) {
+  .container {
+    max-width: 1200px;
+  }
+
+  .main {
+    margin-inline: 0;
   }
 }
 
