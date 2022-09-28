@@ -48,7 +48,7 @@ app.use(helmet({ crossOriginResourcePolicy: { policy: 'cross-origin' } }));
 // Rate limiter
 const limiter = rateLimit({
   windowMs: 30 * 60 * 1000, // 30 minutes
-  max: 100, // Limit each IP to 100 requests per `window` ,
+  max: 300, // Limit each IP to 100 requests per `window` ,
   message: 'Too many request from this IP, please try again in 30 mins!', // Error message
   standardHeaders: true, // Return rate limit info in the `RateLimit-*` headers
   legacyHeaders: false, // Disable the `X-RateLimit-*` headers
