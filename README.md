@@ -12,9 +12,7 @@ Then create a file called `config.env` in the ./server folder. You will need to 
 ```console
 $ node ./server/dev-data/importData.js --import
 ```
-Now to check out the app you can simply run `$ npm start` from the root folder and your server will be up on port [3000](http://localhost:3000/). 
-
-If you wanna play with the frontend (./client) you can start both servers using `$ npm run both`.
+Now to check out the app you can simply run `$ npm start` from the root folder and your server will be up on port [3000](http://localhost:3000/). You can also start both servers using `$ npm run both`.
 
 
 ## Things that can be added later
