@@ -31,7 +31,13 @@
           <form class="form">
             <div class="form-group">
               <label for="" class="form__label">Name</label>
-              <input type="text" class="form__input" placeholder="John Doe" />
+              <input
+                type="text"
+                class="form__input"
+                placeholder="John Doe"
+                required
+                minlength="8"
+              />
             </div>
             <div class="form-group">
               <label for="" class="form__label">Email</label>
@@ -39,6 +45,8 @@
                 type="email"
                 class="form__input"
                 placeholder="example@my.com"
+                required
+                pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$"
               />
             </div>
             <div class="form-group">
@@ -46,7 +54,9 @@
               <input
                 type="tel"
                 class="form__input"
-                placeholder="+40123456789"
+                placeholder="0123456789"
+                required
+                pattern="[0-9]{10,14}$"
               />
             </div>
             <div class="form-group">
@@ -55,6 +65,8 @@
                 type="text"
                 class="form__input"
                 placeholder="City, street, number etc."
+                required
+                minlength="12"
               />
             </div>
             <div class="form-group">
@@ -63,6 +75,8 @@
                 type="text"
                 class="form__input"
                 placeholder="City, street, number etc."
+                required
+                minlength="12"
               />
             </div>
             <button class="form__cta" type="submit">Place order</button>
