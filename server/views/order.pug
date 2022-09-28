@@ -1,0 +1,48 @@
+doctype html 
+html(lang='en')
+    head
+    head
+        meta(charset='UTF-8')/
+        meta(http-equiv='X-UA-Compatible' content='IE=edge')/
+        meta(name='viewport' content='width=device-width, initial-scale=1.0')/
+        link(rel="icon" href="icons/favicon.ico")/
+        link(rel="apple-touch-icon" href="icons/apple-touch-icon.png")/
+        link(rel="manifest" href="manifest.webmanifest")/
+        link(rel='stylesheet' href='styles/order.css' type="text/css")/
+        title Freshy — #{title}
+        script(defer src="scripts/order.js")
+    body
+        header
+            .container
+                a.logo(href="/")
+                    span.logo__name Freshy
+                    img.leaf(src="./icons/leaf.png" alt="")
+        .container 
+            main.main
+                a.home-cta(href='/')
+                    img.home-cta__img(src="icons/arrow.svg")
+                    span.home-cta__text Home
+                .user-input
+                    h1.section-title A few more things...
+                    form.form
+                        .form-group 
+                            label.form__label(for="name") Name
+                            input.form__input(type="text" placeholder="John Doe" required minlength="8" id="name" name="name" autocomplete="off")
+                        .form-group 
+                            label.form__label(for="email") Email 
+                            input.form__input(type="email" placeholder="example@my.com" required pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" id="email" name="email" autocomplete="off")
+                        .form-group
+                            label.form__label(for="phone") Phone number  
+                            input.form__input(type="tel" placeholder="0123456789" required pattern="[0-9]{10,14}$" id="phone" name="phone" autocomplete="off")
+                        .form-group
+                            label.form__label(for="shipping-address") Shipping Address  
+                            input.form__input(type="text" placeholder="City, street, number etc." required minlength="12" id="shipping-address" name="shipping-address" autocomplete="off")
+                        .form-group
+                            label.form__label(for="billing-address") Billing Address  
+                            input.form__input(type="text" placeholder="City, street, number etc." required minlength="12" id="billing-address" name="billing-address" autocomplete="off")
+                        button.form__cta Place order
+                .shopping-cart
+                    h2.section-title Your shopping cart
+                    .items(role="list" aria-label="Items in your shopping cart")
+                    .total Total: 0.00€
+        .error: span.error__text Something went wrong
