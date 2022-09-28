@@ -260,6 +260,7 @@ h2.section-title {
   width: 32rem;
   text-align: center;
   padding-block: 2.4rem;
+  padding-inline: 1.6rem;
   border-radius: 0 0 4px 4px;
   font-size: 1.6rem;
   transition: transform 150ms ease-in-out;
@@ -321,6 +322,65 @@ h2.section-title {
 .error--items__text {
   font-size: 1.4rem;
   font-weight: 500;
+}
+
+.loading--cart {
+  --length: 1.6rem;
+  width: var(--length);
+  margin-inline: auto;
+  position: relative;
+  margin-top: 3.2rem;
+}
+
+.loading--cart__dot {
+  height: var(--length);
+  width: var(--length);
+  background-color: var(--green-three);
+  border-radius: 50%;
+  animation-name: loading--cart-dot;
+  animation-duration: 1500ms;
+  animation-iteration-count: infinite;
+  animation-timing-function: ease-in-out;
+  animation-delay: 250ms;
+}
+
+.loading--cart::before,
+.loading--cart::after {
+  content: '';
+  position: absolute;
+  height: var(--length);
+  width: var(--length);
+  border-radius: 50%;
+  background-color: var(--green-three);
+  top: 0;
+  animation-name: loading--cart-dot;
+  animation-duration: 1500ms;
+  animation-iteration-count: infinite;
+  animation-timing-function: ease-in-out;
+}
+
+.loading--cart::before {
+  left: calc(-1 * var(--length) - 0.4rem);
+  animation-delay: 0s;
+}
+
+.loading--cart::after {
+  right: calc(-1 * var(--length) - 0.4rem);
+  animation-delay: 500ms;
+}
+
+@keyframes loading--cart-dot {
+  0%,
+  10% {
+    transform: scale(0.4);
+  }
+  50% {
+    transform: scale(1.1);
+  }
+  90%,
+  100% {
+    transform: scale(0.4);
+  }
 }
 
 @media (min-width: 920px) {
