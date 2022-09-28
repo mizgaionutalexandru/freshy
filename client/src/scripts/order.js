@@ -142,10 +142,7 @@ function renderEmptyCartError() {
 
   itemsContainer.insertAdjacentHTML('beforeend', markup);
   document.querySelector('.total').remove();
-
-  setTimeout(() => {
-    location.assign('/');
-  }, 1000);
+  document.querySelector('.form__cta').disabled = true;
 }
 
 initShoppingCart();
